@@ -1,33 +1,64 @@
+/*
+
+Generates next pieces for use in game
+
+ */
+
+
 package logic;
 
-//import model.Square;
-
 import java.util.ArrayList;
-import java.util.Random;
-
-
-
+import java.util.Collections;
 
 public class randNext {
 
-    static ArrayList<String> bag = new ArrayList<String>();
+    static ArrayList<String> baseBag = new ArrayList<String>();
     static {
-        bag.add("L");
-        bag.add("J");
-        bag.add("T");
-        bag.add("I");
-        bag.add("O");
-        bag.add("Z");
-        bag.add("S");
+        baseBag.add("L");
+        baseBag.add("J");
+        baseBag.add("T");
+        baseBag.add("I");
+        baseBag.add("O");
+        baseBag.add("Z");
+        baseBag.add("S");
     }
-    //TODO: figure out why i have to static everything
+    //TODO: figure out why i have to static everything here
 
-    private int min = 0;
-    private int max = 6;
+    //TODO: figure out which is better: math generation or shuffle generation
+    //^ shuffle generation probably better in order to allocate for infinite piece generation
 
-    public static String selectNext() {
-        Random random = new Random();
-        int randomNum = random.nextInt(6);
-        return bag.get(randomNum);
+
+    //random math generation
+
+    //private int min = 0;
+    //private int max = 6;
+
+    //public static String selectNext() {
+    //    Random random = new Random();
+    //    int randomNum = random.nextInt(6);
+    //    return bag.get(randomNum);
+    //}
+
+    //shuffle generation
+
+    public String getRandom() {
+        Collections.shuffle(baseBag);
+        return baseBag.get(3);
     }
+
+    public String getFirst() {
+        Collections.shuffle(baseBag);
+        return baseBag.get(0);
+    }
+
+    public ArrayList<String> initNext() {
+        ArrayList<String> currentBag = new ArrayList<String>();
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
+        //TODO: send currentBag to be drawn by UI
+        return currentBag;
+    }
+
 }
