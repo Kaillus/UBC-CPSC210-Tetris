@@ -1,1 +1,25 @@
-02/07/19: Deliverable 01 - set up main, created square class, tetramino class, randnext class
+02/07/19: Deliverable 01 - set up main, created Square class,Tetramino class, randNext class
+- "ui" package
+- main class has main method and calls initMenu() and State.switchState()
+- Print statements present
+
+08/07/19: Deliverable 02 - fleshed out game's different states and switching between them, revamped main class, wrote
+randNext class which deals with "next piece" generation, added enumeration to Tetramino class, changed Square class to
+be future constructor for squares on the (unwritten) game board grid, added KeyInput class which will handle key input,
+added Game class which will handle real-time game logic, added DrawState class which draws UI of given state
+
+- "ui" package
+- randNext
+- main method initializes UI
+- sample Square is constructed in main, JFrame and JPanels are constructed in DrawState
+- Square has fields and will be referenced in GameBoard code (unwritten)
+- a State is passed through switchState to switch game states
+- currentState is a local variable within State that determines the current game state
+- getState() is a getter for currentState which is used in KeyInput to determine behaviour of keys during game states
+- Condition and loop are both used for determining if a line is clearable in Game (temporary pseudocode)
+- Call graph is physical
+- Flow chart is physical
+- Game responds to Enter and Escape keys which do stuff
+- Debugger: find currentState and see if problems are due to currentState being incorrectly assigned
+
+

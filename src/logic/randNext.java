@@ -12,7 +12,7 @@ import java.util.Collections;
 
 public class randNext {
 
-    static ArrayList<String> baseBag = new ArrayList<String>();
+    private static ArrayList<String> baseBag = new ArrayList<String>();
     static {
         baseBag.add("L");
         baseBag.add("J");
@@ -44,11 +44,6 @@ public class randNext {
     public String getRandom() {
         Collections.shuffle(baseBag);
         return baseBag.get(3);
-    }
-
-    public String getFirst() {
-        Collections.shuffle(baseBag);
-        return baseBag.get(0);
     }
 
     public ArrayList<String> initNext() {

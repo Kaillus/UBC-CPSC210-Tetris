@@ -4,5 +4,12 @@ package model;
 
 // not sure how to do this yet
 
-public class Tetramino {
+public enum Tetramino {
+    L,
+    J,
+    T,
+    I,
+    O,
+    Z,
+    S
 }
