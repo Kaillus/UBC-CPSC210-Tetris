@@ -34,16 +34,22 @@ public class State {
         drawState.draw();
     }*/
 
+    //REQUIRES: currentState initialized
+    //EFFECTS: returns currentState
     public static States getState() {
         System.out.println("State is currently: " + currentState);
         return currentState;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets currentState to input state
     public static void setState(States newState) {
         currentState = newState;
         System.out.println("State is now: " + currentState);
     }
 
+    //MODIFIES: this
+    //EFFECTS: changes currentState to input state and initializes associated game mode and methods
     public static void switchState(States switchToState) {
         setState(switchToState);
         switch (currentState) {

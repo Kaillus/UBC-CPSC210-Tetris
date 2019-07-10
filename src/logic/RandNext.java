@@ -10,7 +10,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class randNext {
+public class RandNext {
 
     private static ArrayList<String> baseBag = new ArrayList<String>();
     static {
@@ -41,11 +41,15 @@ public class randNext {
 
     //shuffle generation
 
+    //MODIFIES: this
+    //EFFECTS: shuffles the bag and pulls a random piece out from the middle
     public String getRandom() {
         Collections.shuffle(baseBag);
         return baseBag.get(3);
     }
 
+    //REQUIRES: initNext not being previously run in current game instance
+    //EFFECTS: initializes next four pieces for use in game
     public ArrayList<String> initNext() {
         ArrayList<String> currentBag = new ArrayList<String>();
         currentBag.add(getRandom());
