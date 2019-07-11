@@ -37,7 +37,7 @@ import java.awt.event.KeyAdapter;
     void keyListening();
 }
 
-class DrawMenu implements DrawState {
+class drawMenu implements DrawState {
 
     @Override
     public void update() {
@@ -79,7 +79,7 @@ public class DrawState {
 
     private static JFrame frame = new JFrame("Not Tetris");
 
-    public static void DrawMenu() {
+    public static void drawMenu() {
         //JFrame frame = new JFrame("Not Tetris");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,7 +106,7 @@ public class DrawState {
         frame.setVisible(true);
     }
 
-    public static void DrawGame() {
+    public static void drawGame() {
         frame.removeAll();
         frame.revalidate();
         frame.repaint();

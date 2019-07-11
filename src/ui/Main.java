@@ -19,9 +19,11 @@ public class Main {
 
     //MODIFIES: State
     //EFFECTS: initializes game by switching State to MENU and drawing menu
-    private static void initMenu() {
+    private void initMenu() {
         //State.setState(MENU);
-        State.switchState(MENU);
+
+        State newState = new State();
+        newState.switchState(MENU);
     }
 
     //EFFECTS: ditto ^
@@ -29,6 +31,7 @@ public class Main {
         // initialize UI
         System.out.println("Main: Initializing UI");
 
-        initMenu();
+        Main start = new Main();
+        start.initMenu();
     }
 }
