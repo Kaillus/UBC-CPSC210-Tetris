@@ -15,13 +15,20 @@ package ui;
 
 //import logic.State;
 
+import logic.Constants;
 import logic.KeyInput;
+import logic.TetrisProperties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
@@ -79,6 +86,35 @@ public class DrawState {
 
     private static JFrame frame = new JFrame("Not Tetris");
 
+    public static void drawOptions() {
+        JSlider slider = drawSlider();
+        int optionPanel = JOptionPane.showOptionDialog(
+                frame,
+                slider,
+                "Set game speed",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, null, null);
+        if (JOptionPane.OK_OPTION == optionPanel) {
+            TetrisProperties.writeToProperties(slider.getValue());
+            Constants.setGameSpeed(slider.getValue());
+        } else {
+            System.out.println(2);
+        }
+    }
+
+    private static JSlider drawSlider() {
+        JSlider slider = new JSlider(1,10);
+        slider.setMaximum(10);
+        slider.setMinimum(1);
+        slider.setValue(Constants.getGameSpeed());
+        slider.setMajorTickSpacing(1);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setSnapToTicks(true);
+        return slider;
+    }
+
     public static void drawMenu() {
         //JFrame frame = new JFrame("Not Tetris");
 
@@ -108,7 +144,6 @@ public class DrawState {
 
     public static void drawGame() {
         frame.removeAll();
-        frame.revalidate();
         frame.repaint();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -124,7 +159,6 @@ public class DrawState {
         panel.add(iconLabel);
 
         frame.add(panel);
-
         //frame.setResizable(false);
         KeyListener keyListener = new KeyInput();
         frame.addKeyListener(keyListener);

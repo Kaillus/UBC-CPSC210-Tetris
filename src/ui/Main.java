@@ -8,6 +8,7 @@ package ui;
 
 import logic.State;
 import logic.Constants;
+import logic.TetrisProperties;
 
 import static logic.State.States.MENU;
 import model.Square;
