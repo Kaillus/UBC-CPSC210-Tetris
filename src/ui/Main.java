@@ -7,6 +7,7 @@ Main class for main stuff
 package ui;
 
 import logic.State;
+import logic.Constants;
 
 import static logic.State.States.MENU;
 import model.Square;
@@ -15,13 +16,11 @@ import model.Square;
 
 public class Main {
 
-    Square blueAtOrigin = new Square(false,"blue",0,0);
-
     //MODIFIES: State
     //EFFECTS: initializes game by switching State to MENU and drawing menu
     private void initMenu() {
-        //State.setState(MENU);
-
+        Constants constants = new Constants();
+        constants.initConstants();
         State newState = new State();
         newState.switchState(MENU);
     }
@@ -30,7 +29,6 @@ public class Main {
     public static void main(String[] args) {
         // initialize UI
         System.out.println("Main: Initializing UI");
-
         Main start = new Main();
         start.initMenu();
     }
