@@ -8,6 +8,7 @@ package logic;
 
 public class Game {
 
+
     //iterate through 2D space
     /*public boolean checkForLineFull() {
         for (int i = 0; i < board.boardHeight; i++ ) {
@@ -26,7 +27,8 @@ public class Game {
     Loop interaction: iterate through board (a 2 dimensional array made up of Squares using a coordinate system)
     Iterate through the lowest row of Squares and check if any have parameter Square.empty set to true
     If so the line cannot be considered "full" and cannot be cleared
-    If inner for loop successfully completes an iteration then outer for loop increases index by one and clears that row, checking the next row up
+    If inner for loop successfully completes an iteration then outer for loop increases index by one and clears that
+    row, checking the next row up
     */
 
 
@@ -45,8 +47,8 @@ public class Game {
     Loop interaction: iterate through row (an ordered array made up of Squares)
     Iterate through the input row of Squares and check if any have parameter Square.empty set to true
     If so the line cannot be considered "full" and cannot be cleared
-    If inner for loop successfully completes an iteration then function returns true which is called by another method to check if
-    given line can be cleared (and then clears it if checkForLineFull returns true)
+    If inner for loop successfully completes an iteration then function returns true which is called by another method
+    to check if given line can be cleared (and then clears it if checkForLineFull returns true)
     */
 
 }
