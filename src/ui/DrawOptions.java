@@ -28,7 +28,7 @@ public class DrawOptions implements DrawState {
             TetrisProperties.writeToProperties(slider.getValue(), "config.properties");
             Constants.setGameSpeed(slider.getValue());
         } else {
-            System.out.println("Something's gone wrong in DrawOptions setting gameSpeed");
+            System.out.println("gameSpeed was not set (cancel button?)");
         }
     }
 

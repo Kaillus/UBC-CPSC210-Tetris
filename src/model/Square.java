@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Square {
 
     private String colour;
@@ -20,7 +18,7 @@ public class Square {
 
     //EFFECTS: returns true if square is empty and false if not
     public boolean isEmpty() {
-        return (this.colour == "empty");
+        return (this.colour == "black");
     }
 
     //EFFECTS: returns input square's colour
