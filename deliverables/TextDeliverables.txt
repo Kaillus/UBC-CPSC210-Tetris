@@ -40,3 +40,11 @@ sure the Animatable game pieces place correctly on the board, added Printer for 
 a state's 'draw' method was called. Moved this repetitive code into inheritable methods from DrawPack in order to
 tidy up the code and increase abstraction (writing code that acts on one single JFrame and placing that code in
 different classes is possible because the JFrame is a global static object)
+
+17/07/19: Deliverable 06 - Three exceptions added: PropertiesMissingException and UnknownStateException (which are
+RuntimeExceptions) and IOException
+
+- PropertiesMissingException and IOException are thrown in TetrisProperties when the properties file is called to be
+read but does not exist or the file stream is interrupted
+- UnknownStateException is thrown in State when setState accepts an unknown State. Exception is logged and caught,
+reverted to the previous state. Finally was added which prints the final state after try/catch.

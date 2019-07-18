@@ -8,6 +8,7 @@ Debug: currentState
 
 package logic;
 
+import logic.java.UnknownStateException;
 import ui.DrawGame;
 import ui.DrawMenu;
 import ui.DrawPack;
@@ -22,6 +23,8 @@ public class State extends DrawPack {
     }
 
     private static States currentState;
+
+    private static States previousState;
 
     //REQUIRES: currentState initialized
     //EFFECTS: returns currentState
@@ -39,31 +42,39 @@ public class State extends DrawPack {
 
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
-    public static void switchState(States switchToState) {
+    public static void switchState(States switchToState) throws UnknownStateException {
+        previousState = currentState;
         setState(switchToState);
-        switch (currentState) {
-            case MENU:
-                DrawState drawMenu = new DrawMenu();
-                drawMenu.draw();
-                break;
+        try {
+            switch (currentState) {
+                case MENU:
+                    DrawState drawMenu = new DrawMenu();
+                    drawMenu.draw();
+                    break;
 
-            case GAME:
-                shutdown();
-                DrawState drawGame = new DrawGame();
-                drawGame.draw();
-                break;
+                case GAME:
+                    shutdown();
+                    DrawState drawGame = new DrawGame();
+                    drawGame.draw();
+                    break;
 
-            case PAUSE:
-                //call UI to draw PAUSE
-                break;
+                case PAUSE:
+                    //call UI to draw PAUSE
+                    break;
 
-            case GAME_OVER:
-                //call UI to draw GAME_OVER
-                break;
+                case GAME_OVER:
+                    //call UI to draw GAME_OVER
+                    break;
 
-            default:
-                //System.out.println("UH OH " + currentState);
-                break;
+                default:
+                    throw new UnknownStateException();
+            }
+        } catch (UnknownStateException e) {
+            System.out.println("UnknownStateException! State changed to illegal state " + currentState);
+            setState(previousState);
+            System.out.println("Reverting state to previous state " + previousState);
+        } finally {
+            System.out.println("State was changed to: " + currentState);
         }
     }
 

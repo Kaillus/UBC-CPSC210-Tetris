@@ -6,6 +6,8 @@ Handles actions that occur based on user key input
 
 package logic;
 
+import com.sun.org.apache.bcel.internal.classfile.Unknown;
+import logic.java.UnknownStateException;
 import ui.DrawOptions;
 
 import java.awt.event.KeyAdapter;
