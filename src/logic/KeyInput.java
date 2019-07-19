@@ -42,10 +42,8 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
 
         int keyCode = e.getKeyCode();
 
-        if (keyCode == KeyEvent.VK_ENTER) {
-            if (State.getState() == MENU) {
-                State.switchState(GAME);
-            }
+        if (State.getState() == MENU) {
+            keyPressedInMenu(e);
         }
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
@@ -53,11 +51,24 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
             close();
         }
 
-        if (keyCode == KeyEvent.VK_BACK_SPACE) {
-            if (State.getState() == MENU) {
-                DrawOptions drawOptions = new DrawOptions();
-                drawOptions.draw();
+    }
+
+    private void keyPressedInMenu(KeyEvent e) {
+
+        int keyCode = e.getKeyCode();
+
+        if (keyCode == KeyEvent.VK_ENTER) {
+            try {
+                State.switchState(GAME);
+            } catch (UnknownStateException s) {
+                System.out.println("Game state switch failed");
+                close();
             }
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE) {
+            DrawOptions drawOptions = new DrawOptions();
+            drawOptions.draw();
         }
 
     }

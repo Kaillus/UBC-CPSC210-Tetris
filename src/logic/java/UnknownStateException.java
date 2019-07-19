@@ -1,4 +1,4 @@
 package logic.java;
 
-public class UnknownStateException extends RuntimeException {
+public class UnknownStateException extends Exception {
 }
