@@ -23,12 +23,7 @@ public class NotTetris {
     //EFFECTS: initializes game by switching State to MENU and drawing menu
     private static void initMenu() {
         Constants.initConstants();
-        try {
-            State.switchState(MENU);
-        } catch (UnknownStateException e) {
-            System.out.println("Failed to initialize menu");
-            System.exit(1);
-        }
+        State.switchState(MENU);
     }
 
     //EFFECTS: ditto ^

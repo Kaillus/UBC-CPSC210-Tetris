@@ -19,7 +19,7 @@ import static logic.State.States.MENU;
 public class State extends DrawPack {
 
     public enum States {
-        MENU, GAME, PAUSE, GAME_OVER
+        MENU, GAME, PAUSE, GAME_OVER, debug
     }
 
     private static States currentState;
@@ -42,33 +42,46 @@ public class State extends DrawPack {
 
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
-    public static void switchState(States switchToState) throws UnknownStateException {
+    public static void switchState(States switchToState) {
         previousState = currentState;
         setState(switchToState);
+        switch (currentState) {
+            case MENU:
+                stateDrawMenu();
+                break;
+
+            case GAME:
+                stateDrawGame();
+                break;
+
+            case PAUSE:
+                //call UI to draw PAUSE
+                break;
+
+            case GAME_OVER:
+                //call UI to draw GAME_OVER
+                break;
+
+            default:
+                throwDebugFail();
+
+        }
+    }
+
+    private static void stateDrawMenu() {
+        DrawState drawMenu = new DrawMenu();
+        drawMenu.draw();
+    }
+
+    private static void stateDrawGame() {
+        shutdown();
+        DrawState drawGame = new DrawGame();
+        drawGame.draw();
+    }
+
+    private static void throwDebugFail() {
         try {
-            switch (currentState) {
-                case MENU:
-                    DrawState drawMenu = new DrawMenu();
-                    drawMenu.draw();
-                    break;
-
-                case GAME:
-                    shutdown();
-                    DrawState drawGame = new DrawGame();
-                    drawGame.draw();
-                    break;
-
-                case PAUSE:
-                    //call UI to draw PAUSE
-                    break;
-
-                case GAME_OVER:
-                    //call UI to draw GAME_OVER
-                    break;
-
-                default:
-                    throw new UnknownStateException();
-            }
+            throw new UnknownStateException();
         } catch (UnknownStateException e) {
             System.out.println("UnknownStateException! State changed to illegal state " + currentState);
             setState(previousState);
@@ -77,7 +90,6 @@ public class State extends DrawPack {
             System.out.println("State was changed to: " + currentState);
         }
     }
-
 
 
     @Override
