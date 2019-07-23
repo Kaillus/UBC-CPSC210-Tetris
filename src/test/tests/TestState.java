@@ -2,6 +2,8 @@ package tests;
 
 import logic.State;
 
+import logic.TetrisProperties;
+import logic.java.PropertiesMissingException;
 import logic.java.UnknownStateException;
 import org.junit.*;
 
@@ -26,9 +28,9 @@ public class TestState {
         assertEquals(state.getState(), MENU);
         state.setState(GAME);
         assertEquals(state.getState(), GAME);
-        state.setState(PAUSE);
+        state.switchState(PAUSE);
         assertEquals(state.getState(), PAUSE);
-        state.setState(GAME_OVER);
+        state.switchState(GAME_OVER);
         assertEquals(state.getState(), GAME_OVER);
     }
 
@@ -37,13 +39,25 @@ public class TestState {
         state.setState(MENU);
         assertEquals(state.getState(), MENU);
 
-//        try{
-//            state.setState(debug);
-//        } catch (UnknownStateException e) {
-//            fail("Failed to handle UnknownStateException");
-//        }
+        try{
+            state.switchState(debug);
+        } catch (UnknownStateException e) {
+            fail("Failed to handle UnknownStateException");
+        }
 
         assertEquals(state.getState(), MENU);
 
     }
+
+    @Test
+    public void testMissingFile() {
+        //TetrisProperties.readFromProperties("fail.txt");
+        try {
+            TetrisProperties.readFromProperties("fail.txt");
+            fail("exception was not well-implemented");
+        } catch (PropertiesMissingException e) {
+            //
+        }
+    }
+
 }
