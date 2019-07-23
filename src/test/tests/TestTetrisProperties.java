@@ -1,6 +1,7 @@
 package tests;
 
 import logic.TetrisProperties;
+import logic.java.PropertiesMissingException;
 import org.junit.*;
 
 import java.io.*;
@@ -8,6 +9,7 @@ import java.io.*;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class TestTetrisProperties {
 
@@ -27,7 +29,13 @@ public class TestTetrisProperties {
 
     @Test
     public void testFirstRead() {
-        assertEquals(-1, TetrisProperties.readFromProperties(testPath));
+        //TetrisProperties.readFromProperties("fail.txt");
+        try {
+            TetrisProperties.readFromProperties(testPath);
+            fail("exception was not well-implemented");
+        } catch (PropertiesMissingException e) {
+            //
+        }
     }
 
     @Test
