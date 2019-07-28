@@ -18,11 +18,11 @@ public abstract class DrawPack {
 
     public abstract void background();
 
-    public void pack() {
+    void pack() {
         KeyListener keyListener = new KeyInput();
         TetrisFrame.addKeyListener(keyListener);
 
-        TetrisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        TetrisFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         TetrisFrame.setResizable(false);
         TetrisFrame.setFocusable(true);
         TetrisFrame.pack();
@@ -30,7 +30,7 @@ public abstract class DrawPack {
         TetrisFrame.setVisible(true);
     }
 
-    public static void shutdown() {
+    protected static void shutdown() {
         TetrisFrame.removeAll();
         TetrisFrame.repaint();
         TetrisFrame.revalidate();
