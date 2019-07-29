@@ -51,4 +51,4 @@ reverted to the previous state. Finally was added which prints the final state a
 
 28/07/19: Deliverable 07 -
 
-- Added hashmap system to manage pieces that are currently present on the board
+- Added hashmap system (not functional) to manage pieces that are currently present on the board

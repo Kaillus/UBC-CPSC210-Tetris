@@ -2,7 +2,7 @@ package model;
 
 import logic.Board;
 
-public interface Animatables {
+public interface Animatable {
 
     void draw(Board board, int x, int y);
 

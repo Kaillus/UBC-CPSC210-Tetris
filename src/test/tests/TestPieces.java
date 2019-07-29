@@ -1,7 +1,7 @@
 package tests;
 
 import logic.Board;
-import model.Animatables;
+import model.Animatable;
 
 import model.pieces.*;
 import org.junit.*;
@@ -19,7 +19,7 @@ public class TestPieces {
 
     @Test
     public void placeJ() {
-        Animatables j = new JPiece();
+        Animatable j = new JPiece();
         j.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(2, 0), "blue");
         assertEquals(testBoard.getColourByPos(2, 1), "blue");
@@ -30,7 +30,7 @@ public class TestPieces {
 
     @Test
     public void placeI() {
-        Animatables i = new IPiece();
+        Animatable i = new IPiece();
         i.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(3, 0), "cyan");
         assertEquals(testBoard.getColourByPos(3, 1), "cyan");
@@ -41,7 +41,7 @@ public class TestPieces {
 
     @Test
     public void placeL() {
-        Animatables l = new LPiece();
+        Animatable l = new LPiece();
         l.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(4, 0), "orange");
         assertEquals(testBoard.getColourByPos(4, 1), "orange");
@@ -52,7 +52,7 @@ public class TestPieces {
 
     @Test
     public void placeT() {
-        Animatables t = new TPiece();
+        Animatable t = new TPiece();
         t.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(3, 0), "purple");
         assertEquals(testBoard.getColourByPos(4, 1), "purple");
@@ -63,7 +63,7 @@ public class TestPieces {
 
     @Test
     public void placeO() {
-        Animatables o = new OPiece();
+        Animatable o = new OPiece();
         o.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(3, 0), "yellow");
         assertEquals(testBoard.getColourByPos(3, 1), "yellow");
@@ -74,7 +74,7 @@ public class TestPieces {
 
     @Test
     public void placeS() {
-        Animatables s = new SPiece();
+        Animatable s = new SPiece();
         s.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(4, 0), "green");
         assertEquals(testBoard.getColourByPos(3, 0), "green");
@@ -85,7 +85,7 @@ public class TestPieces {
 
     @Test
     public void placeZ() {
-        Animatables z = new ZPiece();
+        Animatable z = new ZPiece();
         z.draw(testBoard,3, 0);
         assertEquals(testBoard.getColourByPos(2, 0), "red");
         assertEquals(testBoard.getColourByPos(3, 0), "red");

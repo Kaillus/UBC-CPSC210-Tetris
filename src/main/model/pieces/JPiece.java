@@ -1,11 +1,10 @@
 package model.pieces;
 
 import logic.Board;
-import logic.Constants;
-import model.Animatables;
+import model.Animatable;
 import model.Square;
 
-public class JPiece implements Animatables {
+public class JPiece implements Animatable {
 
     private Square one;
     private Square two;

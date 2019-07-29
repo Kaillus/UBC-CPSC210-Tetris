@@ -7,47 +7,47 @@ Generates next pieces for use in game
 
 package logic;
 
+import model.Animatable;
+import model.pieces.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandNext {
 
     private static ArrayList<String> baseBag = new ArrayList<>();
 
     static {
-        baseBag.add("L");
-        baseBag.add("J");
-        baseBag.add("T");
-        baseBag.add("I");
-        baseBag.add("O");
-        baseBag.add("Z");
-        baseBag.add("S");
+        baseBag.add("LPiece");
+        baseBag.add("JPiece");
+        baseBag.add("TPiece");
+        baseBag.add("IPiece");
+        baseBag.add("OPiece");
+        baseBag.add("ZPiece");
+        baseBag.add("SPiece");
     }
-    //TODO: figure out why i have to static everything here
 
-    //TODO: figure out which is better: math generation or shuffle generation
-    //^ shuffle generation probably better in order to allocate for infinite piece generation
-
-
-    //random math generation
-
-    //private int min = 0;
-    //private int max = 6;
-
-    //public static String selectNext() {
-    //    Random random = new Random();
-    //    int randomNum = random.nextInt(6);
-    //    return bag.get(randomNum);
-    //}
-
-    //shuffle generation
+    private String pieceClass;
+    private String piecePath;
 
     //MODIFIES: this
     //EFFECTS: shuffles the bag and pulls a random piece out from the middle
-    public String getRandom() {
+    private String getRandom() {
         Collections.shuffle(baseBag);
         return baseBag.get(3);
     }
+
+    /*public Animatable generatePiece() {
+        pieceClass = getRandom();
+        piecePath = "src/main/model/pieces/" + pieceClass;
+        try {
+            Class ranPiece = Class.forName(piecePath);
+            Animatable newPiece = (Animatable) ranPiece.newInstance();
+        } catch (ClassNotFoundException e) {
+            System.out.println("uh oh");
+        }
+    }*/
 
     //REQUIRES: initNext not being previously run in current game instance
     //EFFECTS: initializes next four pieces for use in game
