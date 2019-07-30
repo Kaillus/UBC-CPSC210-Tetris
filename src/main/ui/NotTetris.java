@@ -31,5 +31,9 @@ public class NotTetris {
         // initialize UI
         System.out.println("NotTetris: Initializing UI");
         initMenu();
+
+        // help with dynamic class generation
+        // help with autobot
+
     }
 }
