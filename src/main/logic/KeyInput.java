@@ -37,6 +37,7 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
     //         Enter at MENU advances game to state GAME
     //         Escape at any state closes the window
     //         Backspace at MENU opens OPTIONS window
+    //         Shift at GAME to save current block
     @Override
     public void keyPressed(KeyEvent e) {
 
