@@ -18,6 +18,7 @@ public class Board {
 
     private Map<String, Animatable> boardPieces;
     private Animatable currentPiece;
+    private Animatable savedPiece;
     private int index;
 
     //MODIFIES: this
@@ -60,11 +61,27 @@ public class Board {
         //boardPieces.replace("currentPiece", currentPiece)
     }
 
-    private void placeNextPiece(Animatable piece) {
-        //String objName = "object" + Integer.toString(index);
-        //boardPieces.put(objName, currentPiece)
-        incrementIndex();
-        nextPiece();
+    private void placeNextPiece(Animatable piece, boolean saved) {
+        if (!saved) {
+            //String objName = "object" + Integer.toString(index);
+            //boardPieces.put(objName, currentPiece)
+            incrementIndex();
+            nextPiece();
+        } else {
+            //boardPieces.replace("currentPiece", piece)
+        }
+    }
+
+    public void setSavedPiece() {
+        if (savedPiece == null) {
+            savedPiece = boardPieces.get("currentPiece");
+            nextPiece();
+        } else {
+            Animatable tempCurrent = boardPieces.get("currentPiece");
+            placeNextPiece(savedPiece, true);
+            savedPiece = tempCurrent;
+        }
+
     }
 
     //REQUIRES: board initialized

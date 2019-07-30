@@ -49,6 +49,6 @@ read but does not exist or the file stream is interrupted
 - UnknownStateException is thrown in State when setState accepts an unknown State. Exception is logged and caught,
 reverted to the previous state. Finally was added which prints the final state after try/catch.
 
-28/07/19: Deliverable 07 -
+28/07/19: Deliverable 08 -
 
 - Added hashmap system (not functional) to manage pieces that are currently present on the board

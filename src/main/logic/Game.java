@@ -51,4 +51,18 @@ public class Game {
     to check if given line can be cleared (and then clears it if checkForLineFull returns true)
     */
 
+    /*
+
+    private Board gameBoard;
+
+    public void init() {
+        gameBoard = new Board(20,10);
+    }
+
+    public void saveBlock() {
+        gameBoard.setSavedPiece();
+    }
+
+    */
+
 }
