@@ -3,15 +3,16 @@ package tests;
 import logic.Board;
 
 import model.Square;
-import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBoard {
 
     private Board testBoard;
 
-    @Before
+    @BeforeEach
     public void initTestBoard() {
         testBoard = new Board(6,6);
     }

@@ -5,19 +5,19 @@ import logic.State;
 import logic.TetrisProperties;
 import logic.java.PropertiesMissingException;
 import logic.java.UnknownStateException;
-import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.TestCase.assertTrue;
 import static logic.State.States.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestState {
 
     private State state;
 
-    @Before
+    @BeforeEach
     public void setup() {
         state = new State();
     }
