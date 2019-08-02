@@ -17,9 +17,8 @@ public class Constants {
 
     //MODIFIES: this
     //EFFECTS: initializes global constants and default values
-    public static void initConstants() {
+    public static void initConstants(String configPath) {
         int initialSpeed = 1;
-        String configPath = "config.properties";
 
         File properties = new File(configPath);
         if (properties.isFile()) {

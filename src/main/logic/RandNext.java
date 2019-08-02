@@ -107,4 +107,8 @@ public class RandNext {
         return latest;
     }
 
+    public int getSize() {
+        return currentBag.size();
+    }
+
 }

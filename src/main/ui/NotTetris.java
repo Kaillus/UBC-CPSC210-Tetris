@@ -22,7 +22,7 @@ public class NotTetris {
     //MODIFIES: State
     //EFFECTS: initializes game by switching State to MENU and drawing menu
     private static void initMenu() {
-        Constants.initConstants();
+        Constants.initConstants("config.properties");
         State.switchState(MENU);
     }
 
