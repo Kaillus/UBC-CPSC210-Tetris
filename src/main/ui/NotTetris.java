@@ -14,6 +14,9 @@ import static logic.State.States.MENU;
 
 import logic.java.UnknownStateException;
 import model.Square;
+
+import javax.swing.*;
+import java.awt.*;
 //import model.pieces.LPiece;
 //import logic.RandNext;
 
