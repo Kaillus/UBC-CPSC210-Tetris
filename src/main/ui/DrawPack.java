@@ -33,7 +33,7 @@ public abstract class DrawPack {
     }
 
     protected static void shutdown() {
-        UIFrame.removeAll();
+        UIFrame.getContentPane().removeAll();
         UIFrame.invalidate();
     }
 
