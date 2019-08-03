@@ -6,34 +6,34 @@ Contains full code used for drawing states that was repetitively called in each 
 
 package ui;
 
-import logic.KeyInput;
+import logic.KeyInputUI;
 
 import javax.swing.*;
 
 import java.awt.event.KeyListener;
 
-import static logic.Constants.TetrisFrame;
+import static logic.Constants.UIFrame;
 
 public abstract class DrawPack {
 
     public abstract void background();
 
     void pack() {
-        KeyListener keyListener = new KeyInput();
-        TetrisFrame.addKeyListener(keyListener);
+        KeyListener keyListener = new KeyInputUI();
+        UIFrame.addKeyListener(keyListener);
 
-        TetrisFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        TetrisFrame.setResizable(false);
-        TetrisFrame.setFocusable(true);
-        TetrisFrame.pack();
-        TetrisFrame.setLocationRelativeTo(null);
-        TetrisFrame.setVisible(true);
+        UIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        UIFrame.setResizable(false);
+        UIFrame.setFocusable(true);
+        UIFrame.pack();
+        UIFrame.setLocationRelativeTo(null);
+        UIFrame.setVisible(true);
     }
 
     protected static void shutdown() {
-        TetrisFrame.removeAll();
-        TetrisFrame.repaint();
-        TetrisFrame.revalidate();
+        UIFrame.removeAll();
+        UIFrame.repaint();
+        UIFrame.revalidate();
     }
 
 }

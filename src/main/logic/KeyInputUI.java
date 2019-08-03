@@ -18,7 +18,7 @@ import static logic.State.States.GAME;
 //import static logic.State.States.PAUSE;
 //import static logic.State.States.MENU;
 
-public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
+public class KeyInputUI extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
 
     //EFFECTS: closes window and kills process
     @Override

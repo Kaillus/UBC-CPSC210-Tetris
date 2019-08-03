@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,6 +48,7 @@ public class TestConstants {
         assertEquals(3, testConstants.getGameSpeed());
     }
 
+    @Test
     public void testGetSet() {
         File testFile = new File(testPath);
         testConstants.initConstants(testPath);
@@ -54,6 +56,11 @@ public class TestConstants {
         assertEquals(1, testConstants.getGameSpeed());
         testConstants.setGameSpeed(3);
         assertEquals(3, testConstants.getGameSpeed());
+    }
+
+    @Test
+    public void testFrame() {
+        assertTrue(testConstants.UIFrame instanceof JFrame);
     }
 
     @AfterEach

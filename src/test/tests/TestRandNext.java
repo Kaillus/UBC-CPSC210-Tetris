@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class testRandNext {
+public class TestRandNext {
 
     private Animatable testObject;
     private RandNext randNext = new RandNext();

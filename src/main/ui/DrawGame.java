@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.*;
 
-import static logic.Constants.TetrisFrame;
+import static logic.Constants.UIFrame;
 
 public class DrawGame extends DrawPack implements DrawState {
 
@@ -12,12 +12,12 @@ public class DrawGame extends DrawPack implements DrawState {
         String iconPath = "src/main/image/TetrisLogo.png";
         ImageIcon icon = new ImageIcon(iconPath);
         JLabel iconLabel = new JLabel(icon);
-        TetrisFrame.getContentPane().add(new JScrollPane(iconLabel));
+        UIFrame.getContentPane().add(new JScrollPane(iconLabel));
         iconLabel.setSize(250,163);
         iconLabel.setLocation(250,100);
         iconLabel.setOpaque(false);
         panel.add(iconLabel);
-        TetrisFrame.add(panel);
+        UIFrame.add(panel);
     }
 
     @Override
