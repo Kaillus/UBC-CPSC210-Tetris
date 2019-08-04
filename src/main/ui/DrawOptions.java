@@ -26,7 +26,7 @@ public class DrawOptions implements DrawState {
                 null, null, null);
         if (JOptionPane.OK_OPTION == optionPanel) {
             TetrisProperties.writeToProperties(slider.getValue(), "config.properties");
-            Constants.setGameSpeed(slider.getValue());
+            Constants.getInstance().setGameSpeed(slider.getValue());
         } else {
             System.out.println("gameSpeed was not set (cancel button?)");
         }
@@ -36,7 +36,7 @@ public class DrawOptions implements DrawState {
         JSlider slider = new JSlider(1,10);
         slider.setMaximum(10);
         slider.setMinimum(1);
-        slider.setValue(Constants.getGameSpeed());
+        slider.setValue(Constants.getInstance().getGameSpeed());
         slider.setMajorTickSpacing(1);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);

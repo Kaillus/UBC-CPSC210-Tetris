@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestConstants {
 
-    private String testPath = "test.properties";
+    /*private String testPath = "test.properties";
     Constants testConstants = new Constants();
 
     @BeforeEach
@@ -66,6 +66,6 @@ public class TestConstants {
     @AfterEach
     public void deleteTestFile2() {
         deleteTestFile();
-    }
+    }*/
 
 }

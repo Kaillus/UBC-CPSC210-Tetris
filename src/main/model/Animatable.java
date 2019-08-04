@@ -6,6 +6,4 @@ public interface Animatable {
 
     void draw(Board board, int x, int y);
 
-    void update();
-
 }

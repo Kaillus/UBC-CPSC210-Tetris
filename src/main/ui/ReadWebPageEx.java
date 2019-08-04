@@ -3,10 +3,8 @@ package ui;
 //shamelessly quoting from: http://zetcode.com/articles/javareadwebpage/
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.util.Iterator;
 
 import org.json.*;
 
@@ -35,15 +33,12 @@ public class ReadWebPageEx {
 
     private static JSONObject parseInput(String url) throws IOException, JSONException {
 
-        InputStream io = new URL(url).openStream();
         JSONObject json;
 
-        try {
+        try (InputStream io = new URL(url).openStream()) {
             BufferedReader rd = new BufferedReader(new InputStreamReader(io, Charset.forName("UTF-8")));
             String jsonText = readString(rd);
             json = new JSONObject(jsonText);
-        } finally {
-            io.close();
         }
 
         return json;
@@ -66,7 +61,7 @@ public class ReadWebPageEx {
         } else {
             weather = weather + "y";
         }
-        
+
         return weather.toLowerCase();
     }
 

@@ -11,15 +11,24 @@ import ui.ReadWebPageEx;
 import javax.swing.*;
 import java.io.File;
 
-public class Constants {
+public final class Constants {
 
     public static JFrame UIFrame = new JFrame(ReadWebPageEx.fetchString());
 
     public static int gameSpeed;
 
+    private static final Constants INSTANCE = new Constants();
+
+    private Constants() {
+    }
+
+    public static Constants getInstance() {
+        return INSTANCE;
+    }
+
     //MODIFIES: this
     //EFFECTS: initializes global constants and default values
-    public static void initConstants(String configPath) {
+    public void initConstants(String configPath) {
         int initialSpeed = 1;
 
         File properties = new File(configPath);
@@ -32,12 +41,12 @@ public class Constants {
     }
 
     //EFFECTS: returns gameSpeed
-    public static int getGameSpeed() {
+    public int getGameSpeed() {
         return gameSpeed;
     }
 
     //EFFECTS: sets gameSpeed
-    public static void setGameSpeed(int i) {
+    public void setGameSpeed(int i) {
         gameSpeed = i;
     }
 

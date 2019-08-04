@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestState {
 
-    private State state;
+    /*private State state;
 
     @BeforeEach
     public void setup() {
@@ -47,6 +47,6 @@ public class TestState {
 
         assertEquals(state.getState(), MENU);
 
-    }
+    }*/
 
 }

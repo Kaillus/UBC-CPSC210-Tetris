@@ -7,18 +7,17 @@ Generates next pieces for use in game
 
 package logic;
 
-import model.Animatable;
+import model.pieces.Piece;
 import model.pieces.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class RandNext {
 
     private static ArrayList<String> baseBag = new ArrayList<>();
-    private ArrayList<Animatable> currentBag = new ArrayList<>();
-    private Animatable targetPiece;
+    private ArrayList<Piece> currentBag = new ArrayList<>();
+    private Piece targetPiece;
     private int sevenSetCounter;
 
     static {
@@ -38,7 +37,7 @@ public class RandNext {
     //MODIFIES: this
     //EFFECTS: the bag is a set of 7 pieces. getRandom() shuffles the bag and then pulls out each piece so there are
     //         no repeating pieces and then shuffles the bag again once all pieces have been selected once
-    public Animatable getRandom() {
+    public Piece getRandom() {
         if (sevenSetCounter == 6) {
             Collections.shuffle(baseBag);
             sevenSetCounter = 0;
@@ -51,7 +50,7 @@ public class RandNext {
     //MODIFIES: this
     //EFFECTS: uses getRandom() to generate a piece and then constructs a new object based on that piece via
     //         switch statements (two methods because checkstyle limits one method to 20 lines)
-    public Animatable generatePiece(String temp) {
+    public Piece generatePiece(String temp) {
         switch (temp) {
             case "LPiece":
                 targetPiece = new LPiece();
@@ -89,7 +88,7 @@ public class RandNext {
     //REQUIRES: initNext not being previously run in current game instance
     //MODIFIES: this
     //EFFECTS: initializes next four pieces for use in game
-    public ArrayList<Animatable> initNext() {
+    public ArrayList<Piece> initNext() {
         currentBag.add(getRandom());
         currentBag.add(getRandom());
         currentBag.add(getRandom());
@@ -100,8 +99,8 @@ public class RandNext {
 
     //MODIFIES: this
     //EFFECTS: returns and removes the first (latest) entry in the pieces coming up and generates a new one at the tail
-    public Animatable nextPiece() {
-        Animatable latest = currentBag.get(0);
+    public Piece nextPiece() {
+        Piece latest = currentBag.get(0);
         currentBag.remove(0);
         currentBag.add(getRandom());
         return latest;

@@ -4,7 +4,7 @@ import logic.Board;
 import model.Animatable;
 import model.Square;
 
-public class OPiece implements Animatable {
+public class OPiece extends Piece {
 
     private Square one;
     private Square two;
@@ -23,8 +23,4 @@ public class OPiece implements Animatable {
         board.placeOnBoard(fou);
     }
 
-    @Override
-    public void update(){
-        //TODO: fall, etc
-    }
 }
