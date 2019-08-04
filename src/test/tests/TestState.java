@@ -1,25 +1,13 @@
 package tests;
 
-import logic.State;
-
-import logic.TetrisProperties;
-import logic.java.PropertiesMissingException;
-import logic.java.UnknownStateException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static logic.State.States.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestState {
 
-    /*private State state;
-
-    @BeforeEach
+    /*@BeforeEach
     public void setup() {
-        state = new State();
+        //State.getInstance().setState(previousState);
     }
 
     @Test
@@ -47,6 +35,11 @@ public class TestState {
 
         assertEquals(state.getState(), MENU);
 
+    }
+
+    @AfterAll
+    public void fix() {
+        previousState = State.getInstance().getState();
     }*/
 
 }

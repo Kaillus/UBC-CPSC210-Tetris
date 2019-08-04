@@ -65,7 +65,7 @@ public class TetrisProperties {
         } catch (IOException ex) {
             System.out.println("Failed reading of properties file at " + p);
             ex.printStackTrace();
-            return 1;
+            return 10;
         }
     }
 

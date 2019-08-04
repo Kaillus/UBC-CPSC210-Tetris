@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static logic.Constants.UIFrame;
+import static ui.Constants.UIFrame;
 
 public class DrawMenu extends DrawPack implements DrawState {
 

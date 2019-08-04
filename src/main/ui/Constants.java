@@ -4,9 +4,9 @@ Supposed to handle global constants but there's only one I need to be global rig
 
 */
 
-package logic;
+package ui;
 
-import ui.ReadWebPageEx;
+import logic.TetrisProperties;
 
 import javax.swing.*;
 import java.io.File;

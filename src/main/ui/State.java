@@ -6,15 +6,9 @@ Debug: currentState
 
  */
 
-package logic;
+package ui;
 
 import logic.java.UnknownStateException;
-import ui.DrawGame;
-import ui.DrawMenu;
-import ui.DrawPack;
-import ui.DrawState;
-
-import static logic.State.States.MENU;
 
 public class State extends DrawPack {
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import logic.Game;
 
-import static logic.Constants.UIFrame;
+import static ui.Constants.UIFrame;
 
 public class DrawGame extends DrawPack implements DrawState {
 
