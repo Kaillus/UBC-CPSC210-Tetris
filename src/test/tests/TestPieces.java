@@ -11,12 +11,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPieces {
-
+/*
     private Board testBoard;
 
     @BeforeEach
     public void initTestBoard() {
-        testBoard = new Board(6,6);
+        testBoard = new Board(6, 6);
     }
 
     @Test
@@ -100,5 +100,7 @@ public class TestPieces {
     public static void testSuccess() {
         System.out.println("All seven pieces place on the board without issue");
     }
+
+    */
 
 }

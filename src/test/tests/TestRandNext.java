@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestRandNext {
-
+/*
     private Animatable testObject;
     private RandNext randNext = new RandNext();
 
@@ -49,7 +49,7 @@ public class TestRandNext {
         testObject = randNext.nextPiece();
         assertTrue(testObject instanceof Animatable);
         assertEquals(4, randNext.getSize());
-    }
+    }*/
 
     /*@Test
     public void testGetRandom() {
@@ -61,4 +61,5 @@ public class TestRandNext {
             if (a instanceof cls)
         }
     }*/
+
 }

@@ -52,11 +52,16 @@ public class Game {
     */
 
     public Board gameBoard;
-    private int boardHeight = 20;
-    private int boardWidth = 10;
+    public final int boardHeight = 20;
+    public final int boardWidth = 10;
 
-    public void init() {
-        gameBoard = new Board(boardHeight, boardWidth);
+    public Game() {
+        gameBoard = new Board(boardWidth, boardHeight);
+        gameBoard.genPiece();
+    }
+
+    public Board getGameBoard() {
+        return gameBoard;
     }
 
     public void saveBlock() {
