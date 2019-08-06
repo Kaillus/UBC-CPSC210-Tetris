@@ -87,10 +87,17 @@ public class Board implements PieceObserver {
     @Override
     public void update(Square square, int dir) {
         switch (dir) {
-            case 1:
+            case 1: //DOWN
                 moveOnBoard(square, 0, 1);
                 break;
+            case 2: //LEFT
+                moveOnBoard(square, -1, 0);
+                break;
+            case 3: //RIGHT
+                moveOnBoard(square, 1, 0);
+                break;
             default:
+                System.out.println("illegal direction PieceObserver");
                 break;
         }
     }
@@ -177,6 +184,7 @@ public class Board implements PieceObserver {
     public void updatePiece(Piece piece) {
         if (canMove(piece, 1)) {
             piece.moveDown();
+            //System.out.println("moving piece down");
         } else {
             nextPiece();
         }
@@ -199,8 +207,13 @@ public class Board implements PieceObserver {
     public void moveOnBoard(Square square, int newX, int newY) {
         int oldX = square.getSquareX();
         int oldY = square.getSquareY();
+        System.out.println("prewipe: " + this.gameBoard[oldY][oldX].getColour().toString());
         this.gameBoard[oldY][oldX] = new Square(Color.black, oldX, oldY);
+        System.out.println("postwipe: " + this.gameBoard[oldY][oldX].getColour().toString());
         square.setLocation(oldX + newX, oldY + newY);
+        //this.gameBoard[oldY + newY][oldX + newX] = square;
+        placeOnBoard(square);
+        System.out.println("get colour of new: " + this.gameBoard[oldY + newY][oldX + newX].getColour().toString());
     }
 
     public void wipeSquare(int x, int y) {
