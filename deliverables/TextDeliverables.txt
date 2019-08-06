@@ -64,5 +64,5 @@ reverted to the previous state. Finally was added which prints the final state a
 03/08/19 - Deliverable 10 and 11
 
 - Fetched and parsed json weather api, implemented as window heading
-- Observer implemented with KeyListener in KeyInput
+- Observer pattern implemented between Board and Piece using PieceSubject and PieceObserver
 - GUI = Tetris
