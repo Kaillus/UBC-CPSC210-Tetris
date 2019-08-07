@@ -56,7 +56,7 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
                 break;
 
             case GAME:
-                keyPressedInGame(e);
+                //keyPressedInGame(e);
                 break;
 
             default:

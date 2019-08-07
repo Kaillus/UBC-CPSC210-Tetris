@@ -1,13 +1,10 @@
 package tests;
 
-import logic.Board;
+import model.Animatable;
+import ui.Board;
 import logic.RandNext;
 import model.pieces.*;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,16 +36,14 @@ public class TestRandNext {
 
     @Test
     public void testInitNext() {
-        randNext.initNext();
         assertEquals(4, randNext.getSize());
     }
 
     @Test
     public void testNextPiece() {
-        randNext.initNext();
         assertEquals(4, randNext.getSize());
         testObject = randNext.nextPiece();
-        assertTrue(testObject instanceof Piece);
+        assertTrue(testObject instanceof Animatable);
         assertEquals(4, randNext.getSize());
     }
 

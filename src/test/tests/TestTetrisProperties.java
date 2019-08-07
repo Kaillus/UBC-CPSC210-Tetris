@@ -33,9 +33,7 @@ public class TestTetrisProperties {
     public void testFirstRead() {
         //TetrisProperties.readFromProperties("fail.txt");
         try {
-            if (TetrisProperties.readFromProperties(testPath) == 10) {
-                fail("failed to properly read from properties file");
-            }
+            TetrisProperties.readFromProperties(testPath);
             fail("exception was not well-implemented");
         } catch (PropertiesMissingException e) {
             //

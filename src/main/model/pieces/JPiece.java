@@ -1,7 +1,8 @@
 package model.pieces;
 
-import logic.Board;
 import model.paint.Square;
+import ui.Board;
+import ui.Constants;
 
 import java.awt.*;
 
@@ -9,25 +10,17 @@ public class JPiece extends Piece {
 
     public JPiece(Board board, int x, int y) {
         super(board, Color.blue);
-        Square one = new Square(Color.blue, x - 1, y);
-        Square two = new Square(Color.blue, x - 1, y + 1);
-        Square thr = new Square(Color.blue, x, y + 1);
-        Square fou = new Square(Color.blue, x + 1, y + 1);
-        board.placeOnBoard(one);
-        board.placeOnBoard(two);
-        board.placeOnBoard(thr);
-        board.placeOnBoard(fou);
+        setPos(x, y);
     }
 
-    @Override
-    public void draw(Board board, int x, int y) {
+    public void setPos(int x, int y) {
         Square one = new Square(Color.blue, x - 1, y);
         Square two = new Square(Color.blue, x - 1, y + 1);
         Square thr = new Square(Color.blue, x, y + 1);
         Square fou = new Square(Color.blue, x + 1, y + 1);
-        board.placeOnBoard(one);
-        board.placeOnBoard(two);
-        board.placeOnBoard(thr);
-        board.placeOnBoard(fou);
+        one.setLocation(x - Constants.blockSize, y);
+        two.setLocation(x - Constants.blockSize, y + Constants.blockSize);
+        thr.setLocation(x, y + Constants.blockSize);
+        fou.setLocation(x + Constants.blockSize, y + Constants.blockSize);
     }
 }

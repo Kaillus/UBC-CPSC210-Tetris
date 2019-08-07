@@ -10,6 +10,7 @@ import logic.TetrisProperties;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,8 @@ public final class Constants {
     public static JFrame UIFrame = new JFrame(ReadWebPageEx.fetchString());
 
     public static int gameSpeed;
+
+    public static final int blockSize = 25;
 
     private static final Constants INSTANCE = new Constants();
 
@@ -32,6 +35,10 @@ public final class Constants {
     //MODIFIES: this
     //EFFECTS: initializes global constants and default values
     public void initConstants(String configPath) {
+
+        KeyListener keyListener = new KeyInput();
+        UIFrame.addKeyListener(keyListener);
+
         int initialSpeed = 1;
 
         File properties = new File(configPath);

@@ -17,9 +17,6 @@ public abstract class DrawPack {
     public abstract void background();
 
     void pack() {
-        KeyListener keyListener = new KeyInput();
-        UIFrame.addKeyListener(keyListener);
-
         UIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         UIFrame.setResizable(false);
         UIFrame.setFocusable(true);
