@@ -7,13 +7,12 @@ Supposed to handle global constants but there's only one I need to be global rig
 package ui;
 
 import logic.TetrisProperties;
+import ui.logic.KeyInput;
+import ui.logic.ReadWebPageEx;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 public final class Constants {
 
@@ -22,6 +21,9 @@ public final class Constants {
     public static int gameSpeed;
 
     public static final int blockSize = 25;
+
+    public static final int boardHeight = 20;
+    public static final int boardWidth = 10;
 
     private static final Constants INSTANCE = new Constants();
 

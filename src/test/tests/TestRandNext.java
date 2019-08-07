@@ -1,7 +1,7 @@
 package tests;
 
 import model.Animatable;
-import ui.Board;
+import ui.logic.Board;
 import logic.RandNext;
 import model.pieces.*;
 import org.junit.jupiter.api.Test;

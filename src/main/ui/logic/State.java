@@ -6,10 +6,13 @@ Debug: currentState
 
  */
 
-package ui;
+package ui.logic;
 
 import logic.Game;
 import logic.java.UnknownStateException;
+import ui.DrawMenu;
+import ui.DrawPack;
+import ui.DrawState;
 
 public class State extends DrawPack {
 
@@ -60,10 +63,6 @@ public class State extends DrawPack {
                 stateDrawGame();
                 break;
 
-            case PAUSE:
-                //call UI to draw PAUSE
-                break;
-
             case GAME_OVER:
                 //call UI to draw GAME_OVER
                 break;
@@ -76,13 +75,11 @@ public class State extends DrawPack {
 
     private void stateDrawMenu() {
         DrawState drawMenu = new DrawMenu();
-        drawMenu.init();
     }
 
     private void stateDrawGame() {
         shutdown();
         game = new Game();
-
     }
 
     private void throwDebugFail() {

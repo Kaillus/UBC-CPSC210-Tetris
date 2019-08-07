@@ -6,25 +6,19 @@ Game functions here
 
 package logic;
 
-import ui.Board;
+import ui.Constants;
+import ui.logic.Board;
 
 public class Game {
 
-    public Board gameBoard;
-    public final int boardHeight = 20;
-    public final int boardWidth = 10;
+    private Board gameBoard;
 
     public Game() {
-        gameBoard = new Board(boardWidth, boardHeight);
+        gameBoard = new Board(Constants.boardWidth, Constants.boardHeight);
     }
 
     public Board getGameBoard() {
-        return gameBoard;
+        return this.gameBoard;
     }
-
-    public void saveBlock() {
-        gameBoard.setSavedPiece();
-    }
-
 
 }

@@ -12,6 +12,4 @@ public interface DrawState {
 
     void draw();
 
-    void init();
-
 }

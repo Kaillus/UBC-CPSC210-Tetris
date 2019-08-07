@@ -3,10 +3,11 @@ package tests;
 import logic.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.logic.Board;
 
 public class TestGame {
 
-    /*private Game testGame;
+    private Game testGame;
 
     @BeforeEach
     private void setup() {
@@ -14,7 +15,7 @@ public class TestGame {
     }
 
     @Test
-    public void testBoardInit() {
-        testGame.init();
-    }*/
+    public void testBoard() {
+        Board testBoard = testGame.getGameBoard();
+    }
 }

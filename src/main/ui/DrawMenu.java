@@ -12,6 +12,16 @@ import static ui.Constants.UIFrame;
 
 public class DrawMenu extends DrawPack implements DrawState {
 
+    public DrawMenu() {
+        draw();
+    }
+
+    @Override
+    public void draw()  {
+        background();
+        pack();
+    }
+
     @Override
     public void background() {
         try {
@@ -36,18 +46,6 @@ public class DrawMenu extends DrawPack implements DrawState {
     @Override
     public void update() {
         // no updating on menu screen
-    }
-
-    @Override
-    public void draw()  {
-        background();
-        pack();
-    }
-
-    @Override
-    public void init() {
-        draw();
-        //keyListening();
     }
 
 }

@@ -1,15 +1,5 @@
 package tests;
 
-import ui.Board;
-
-import model.paint.Square;
-import model.pieces.IPiece;
-import model.pieces.Piece;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-
-import java.awt.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -2,20 +2,16 @@ package tests;
 
 import logic.java.UnknownStateException;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.State;
+import ui.logic.State;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-import static ui.State.States.*;
+import static ui.logic.State.States.*;
 
 public class TestState {
-/*
-    @BeforeEach
-    public void setup() {
-        //State.getInstance().setState(previousState);
-    }
+
+    State state = State.getInstance();
 
     @Test
     public void testStateChange() {
@@ -23,8 +19,6 @@ public class TestState {
         assertEquals(state.getState(), MENU);
         state.setState(GAME);
         assertEquals(state.getState(), GAME);
-        state.switchState(PAUSE);
-        assertEquals(state.getState(), PAUSE);
         state.switchState(GAME_OVER);
         assertEquals(state.getState(), GAME_OVER);
     }
@@ -44,9 +38,4 @@ public class TestState {
 
     }
 
-    @AfterAll
-    public void fix() {
-        previousState = State.getInstance().getState();
-    }
-*/
 }

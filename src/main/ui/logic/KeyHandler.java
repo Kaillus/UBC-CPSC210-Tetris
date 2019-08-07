@@ -1,11 +1,11 @@
-package ui;
+package ui.logic;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public abstract class KeyHandler extends AbstractAction {
 
-    public static final String commandPrefix = "KeyHandler";
+    private static final String commandPrefix = "KeyHandler";
 
     public KeyHandler(JComponent comp, int keyCode, int mod) {
         super();

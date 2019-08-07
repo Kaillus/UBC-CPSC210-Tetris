@@ -6,7 +6,9 @@ Main class for main stuff
 
 package ui;
 
-import static ui.State.States.MENU;
+import ui.logic.State;
+
+import static ui.logic.State.States.MENU;
 
 public class NotTetris {
 
