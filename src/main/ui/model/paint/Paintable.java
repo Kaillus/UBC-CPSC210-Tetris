@@ -1,4 +1,4 @@
-package model.paint;
+package ui.model.paint;
 
 public interface Paintable {
 

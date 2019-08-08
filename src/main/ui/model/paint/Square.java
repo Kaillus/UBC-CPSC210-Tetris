@@ -1,6 +1,6 @@
-package model.paint;
+package ui.model.paint;
 
-import ui.model.SmartRectangle;
+import ui.model.pieces.SmartRectangle;
 
 import java.awt.*;
 

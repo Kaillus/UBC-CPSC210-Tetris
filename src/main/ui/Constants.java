@@ -6,13 +6,14 @@ Supposed to handle global constants but there's only one I need to be global rig
 
 package ui;
 
-import logic.TetrisProperties;
+import model.TetrisProperties;
 import ui.logic.KeyInput;
 import ui.logic.ReadWebPageEx;
 
 import javax.swing.*;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.IOException;
 
 public final class Constants {
 
@@ -44,11 +45,17 @@ public final class Constants {
         int initialSpeed = 1;
 
         File properties = new File(configPath);
-        if (properties.isFile()) {
-            gameSpeed = TetrisProperties.readFromProperties(configPath);
-        } else {
-            gameSpeed = initialSpeed;
-            TetrisProperties.writeToProperties(initialSpeed, configPath);
+        try {
+            if (properties.isFile()) {
+                gameSpeed = TetrisProperties.readFromProperties(configPath);
+            } else {
+                gameSpeed = initialSpeed;
+                TetrisProperties.writeToProperties(initialSpeed, configPath);
+            }
+        } catch (IOException e) {
+            gameSpeed = 1;
+            System.out.println("IOException was thrown initializing constants");
+            e.printStackTrace();
         }
     }
 

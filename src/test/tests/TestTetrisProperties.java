@@ -1,8 +1,6 @@
 package tests;
 
-import logic.TetrisProperties;
-import logic.java.PropertiesMissingException;
-import org.junit.jupiter.api.AfterAll;
+import model.TetrisProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,28 +31,37 @@ public class TestTetrisProperties {
     public void testFirstRead() {
         //TetrisProperties.readFromProperties("fail.txt");
         try {
-            TetrisProperties.readFromProperties(testPath);
+            TetrisProperties.readFromProperties("text.txt");
             fail("exception was not well-implemented");
-        } catch (PropertiesMissingException e) {
+        } catch (IOException e) {
             //
         }
     }
 
     @Test
     public void testFirstWrite() {
-        TetrisProperties.writeToProperties(5, testPath);
-        File testFile = new File(testPath);
-        assertTrue(testFile.isFile());
-        assertEquals(5, TetrisProperties.readFromProperties(testPath));
+        try {
+            TetrisProperties.writeToProperties(5, testPath);
+            File testFile = new File(testPath);
+            assertTrue(testFile.isFile());
+            assertEquals(5, TetrisProperties.readFromProperties(testPath));
+        } catch (IOException e) {
+            fail("IOException was thrown");
+        }
+
 
     }
 
     @Test
     public void testMultipleWrite() {
-        TetrisProperties.writeToProperties(8, testPath);
-        TetrisProperties.writeToProperties(54, testPath);
-        TetrisProperties.writeToProperties(5, testPath);
-        assertEquals(5, TetrisProperties.readFromProperties(testPath));
+        try {
+            TetrisProperties.writeToProperties(8, testPath);
+            TetrisProperties.writeToProperties(54, testPath);
+            TetrisProperties.writeToProperties(5, testPath);
+            assertEquals(5, TetrisProperties.readFromProperties(testPath));
+        } catch (IOException e) {
+            fail("IOException was thrown");
+        }
     }
 
 

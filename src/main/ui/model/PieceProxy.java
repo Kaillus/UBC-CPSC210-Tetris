@@ -1,6 +1,4 @@
-package model;
-
-import model.pieces.Piece;
+package ui.model;
 
 import java.awt.*;
 

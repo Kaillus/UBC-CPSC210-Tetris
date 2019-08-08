@@ -1,6 +1,6 @@
-package model;
+package ui.model;
 
-import model.paint.Paintable;
+import ui.model.paint.Paintable;
 
 public interface Animatable extends Movable, Paintable {
 

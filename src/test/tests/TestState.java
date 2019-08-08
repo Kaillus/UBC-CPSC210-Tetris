@@ -1,7 +1,6 @@
 package tests;
 
-import logic.java.UnknownStateException;
-import org.junit.jupiter.api.AfterAll;
+import model.java.UnknownStateException;
 import org.junit.jupiter.api.Test;
 import ui.logic.State;
 

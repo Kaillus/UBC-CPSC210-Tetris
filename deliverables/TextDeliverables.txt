@@ -6,7 +6,7 @@
 08/07/19: Deliverable 02 - fleshed out game's different states and switching between them, revamped main class, wrote
 randNext class which deals with "next piece" generation, added enumeration to Tetramino class, changed Square class to
 be future constructor for squares on the (unwritten) game board grid, added KeyInput class which will handle key input,
-added Game class which will handle real-time game logic, added DrawState class which draws UI of given state
+added Game class which will handle real-time game model, added DrawState class which draws UI of given state
 
 - "ui" package
 - randNext

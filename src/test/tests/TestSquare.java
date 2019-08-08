@@ -1,6 +1,6 @@
 package tests;
 
-import model.paint.Square;
+import ui.model.paint.Square;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

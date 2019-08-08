@@ -1,9 +1,9 @@
 package ui.logic;
 
-import logic.RandNext;
-import model.PieceProxy;
-import model.paint.Square;
-import model.pieces.Piece;
+import model.RandNext;
+import ui.model.PieceProxy;
+import ui.model.paint.Square;
+import ui.model.pieces.Piece;
 import ui.Constants;
 
 import javax.swing.*;
@@ -59,7 +59,7 @@ public class Board extends JPanel implements ActionListener {
         UIFrame.revalidate();
         UIFrame.repaint();
         this.gameBoard = new Square[this.boardHeight][this.boardWidth];
-        this.timer = new Timer((500 / gameSpeed), this);
+        this.timer = new Timer((500 / getTimerMultiplier(gameSpeed)), this);
         timer.start();
     }
 
@@ -125,6 +125,7 @@ public class Board extends JPanel implements ActionListener {
     public boolean checkEndGame() {
         for (int i = 0; i < boardWidth; i++) {
             Square block = gameBoard[i][0];
+            System.out.println(block.getColour());
             if (block != null) {
                 end = true;
                 return end;
@@ -200,8 +201,8 @@ public class Board extends JPanel implements ActionListener {
     public void placePiece(Piece piece) {
         Square[] blocks = {piece.getOne(), piece.getTwo(), piece.getThr(), piece.getFou()};
         for (Square block : blocks) {
-            int x = block.getSquareX();
-            int y = block.getSquareY();
+            int x = (int) block.getSquareX();
+            int y = (int) block.getSquareY();
             int column = x / Constants.blockSize;
             int row = y / Constants.blockSize;
 
@@ -213,7 +214,7 @@ public class Board extends JPanel implements ActionListener {
         }
 
         this.checkRows();
-        if (this.checkEndGame()) {
+        if (checkEndGame()) {
             State.getInstance().switchState(GAME_OVER);
         } else {
             proxy.setPiece(this.nextPiece());
@@ -225,10 +226,11 @@ public class Board extends JPanel implements ActionListener {
             return;
         }
         for (int i = row - 1; i >= 0; i--) {
+            System.out.println(row);
             for (int j = 0; j < boardWidth; j++) {
                 Square block = gameBoard[j][i];
                 gameBoard[j][i] = null;
-                gameBoard[j][i] = block;
+                gameBoard[j][i + 1] = block;
                 if (block != null) {
                     block.setLocation(block.getSquareX(), block.getSquareY() + Constants.blockSize);
                 }

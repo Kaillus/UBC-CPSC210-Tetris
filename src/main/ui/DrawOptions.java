@@ -1,8 +1,10 @@
 package ui;
 
-import logic.TetrisProperties;
+import model.TetrisProperties;
 
 import javax.swing.*;
+
+import java.io.IOException;
 
 import static ui.Constants.UIFrame;
 
@@ -28,7 +30,11 @@ public class DrawOptions implements DrawState {
                 JOptionPane.QUESTION_MESSAGE,
                 null, null, null);
         if (JOptionPane.OK_OPTION == optionPanel) {
-            TetrisProperties.writeToProperties(slider.getValue(), "config.properties");
+            try {
+                TetrisProperties.writeToProperties(slider.getValue(), "config.properties");
+            } catch (IOException e) {
+                System.out.println("IOException was thrown writing options slider to properties");
+            }
             Constants.getInstance().setGameSpeed(slider.getValue());
         } else {
             System.out.println("gameSpeed was not set (cancel button?)");

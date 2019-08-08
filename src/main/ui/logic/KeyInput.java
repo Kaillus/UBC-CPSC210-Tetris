@@ -12,22 +12,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import static ui.logic.State.States.GAME;
-//import static ui.logic.State.States.PAUSE;
-//import static ui.logic.State.States.MENU;
+//import static ui.model.State.States.PAUSE;
+//import static ui.model.State.States.MENU;
 
-public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
-
-    //EFFECTS: closes window and kills process
-    @Override
-    public void close() {
-        System.exit(0);
-    }
-
-    //EFFECTS: prints input string to internal console
-    @Override
-    public void print(String string) {
-        System.out.println(string);
-    }
+public class KeyInput extends KeyAdapter {
 
     private State state = State.getInstance();
 
@@ -47,8 +35,8 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
-            print("Exiting process via emergency escape, currentState was: " + state.getState());
-            close();
+            System.out.println("Exiting process via emergency escape, currentState was: " + state.getState());
+            System.exit(0);
         }
 
         switch (state.getState()) {

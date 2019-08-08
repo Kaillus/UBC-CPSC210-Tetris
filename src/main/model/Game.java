@@ -4,7 +4,7 @@ Game functions here
 
  */
 
-package logic;
+package model;
 
 import ui.Constants;
 import ui.logic.Board;

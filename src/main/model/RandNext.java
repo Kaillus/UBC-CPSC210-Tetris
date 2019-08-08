@@ -5,11 +5,10 @@ Generates next pieces for use in game
  */
 
 
-package logic;
+package model;
 
-import model.pieces.Piece;
-import model.pieces.*;
 import ui.logic.Board;
+import ui.model.pieces.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
