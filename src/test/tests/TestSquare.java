@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSquare {
-/*
+
     private Square square;
 
     @BeforeEach
     public void setup() {
-        square = new Square(Color.black,0,0);
+        square = new Square(Color.black);
     }
 
     @Test
@@ -28,16 +28,4 @@ public class TestSquare {
         assertFalse(square.isEmpty());
         System.out.println(square.isEmpty());
     }
-
-    @Test
-    public void testPositionChange() {
-        System.out.println(square.getSquareX() + ", " + square.getSquareY());
-        assertEquals(square.getSquareX(), 0);
-        assertEquals(square.getSquareY(), 0);
-        square.setPosition(1,-1);
-        assertEquals(square.getSquareX(), 1);
-        assertEquals(square.getSquareY(), -1);
-        System.out.println(square.getSquareX() + ", " + square.getSquareY());
-    }
-*/
 }

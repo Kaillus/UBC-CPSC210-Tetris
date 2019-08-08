@@ -77,10 +77,10 @@ public abstract class Piece implements Animatable {
         boolean block4 = board.canMove(newx4 / Constants.blockSize, (int) fou.getY() / Constants.blockSize);
 
         if (block1 && block2 && block3 && block4) {
-            one.setLocation(newx1,one.getY());
-            two.setLocation(newx2,two.getY());
-            thr.setLocation(newx3,thr.getY());
-            fou.setLocation(newx4,fou.getY());
+            one.setLocation(newx1, one.getY());
+            two.setLocation(newx2, two.getY());
+            thr.setLocation(newx3, thr.getY());
+            fou.setLocation(newx4, fou.getY());
             return true;
         } else {
             return false;
@@ -98,10 +98,10 @@ public abstract class Piece implements Animatable {
         boolean block4 = board.canMove(newx4 / Constants.blockSize, (int) fou.getY() / Constants.blockSize);
 
         if (block1 && block2 && block3 && block4) {
-            one.setLocation(newx1,one.getY());
-            two.setLocation(newx2,two.getY());
-            thr.setLocation(newx3,thr.getY());
-            fou.setLocation(newx4,fou.getY());
+            one.setLocation(newx1, one.getY());
+            two.setLocation(newx2, two.getY());
+            thr.setLocation(newx3, thr.getY());
+            fou.setLocation(newx4, fou.getY());
             return true;
         } else {
             return false;
@@ -114,10 +114,10 @@ public abstract class Piece implements Animatable {
         int newy3 = (int) thr.getY() + Constants.blockSize;
         int newy4 = (int) fou.getY() + Constants.blockSize;
 
-        boolean block1 = board.canMove((int) one.getY() / Constants.blockSize, newy1 / Constants.blockSize);
-        boolean block2 = board.canMove((int) two.getY() / Constants.blockSize, newy2 / Constants.blockSize);
-        boolean block3 = board.canMove((int) thr.getY() / Constants.blockSize, newy3 / Constants.blockSize);
-        boolean block4 = board.canMove((int) fou.getY() / Constants.blockSize, newy4 / Constants.blockSize);
+        boolean block1 = board.canMove((int) one.getX() / Constants.blockSize, newy1 / Constants.blockSize);
+        boolean block2 = board.canMove((int) two.getX() / Constants.blockSize, newy2 / Constants.blockSize);
+        boolean block3 = board.canMove((int) thr.getX() / Constants.blockSize, newy3 / Constants.blockSize);
+        boolean block4 = board.canMove((int) fou.getX() / Constants.blockSize, newy4 / Constants.blockSize);
 
         if (block1 && block2 && block3 && block4) {
             one.setLocation((int) one.getX(), newy1);
@@ -130,6 +130,56 @@ public abstract class Piece implements Animatable {
 
 
         return false;
+    }
+
+
+    public boolean turnLeft() {
+        int newx1 = (int) one.getX();
+        int newy1 = (int) one.getY();
+        int newx2 = (int) (newx1 + newy1 - two.getY());
+        int newy2 = (int) (newy1 - newx1 + two.getX());
+        int newx3 = (int) (newx1 + newy1 - thr.getY());
+        int newy3 = (int) (newy1 - newx1 + thr.getX());
+        int newx4 = (int) (newx1 + newy1 - fou.getY());
+        int newy4 = (int) (newy1 - newx1 + fou.getX());
+
+        if (checkCanTurn(newx1, newx2, newx3, newx4, newy1, newy2, newy3, newy4)) {
+            two.setLocation(newx2, newy2);
+            thr.setLocation(newx3, newy3);
+            fou.setLocation(newx4, newy4);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public boolean turnRight() {
+        int newx1 = (int) one.getX();
+        int newy1 = (int) one.getY();
+        int newx2 = (int) (newx1 - newy1 + two.getY());
+        int newy2 = (int) (newy1 + newx1 - two.getX());
+        int newx3 = (int) (newx1 - newy1 + thr.getY());
+        int newy3 = (int) (newy1 + newx1 - thr.getX());
+        int newx4 = (int) (newx1 - newy1 + fou.getY());
+        int newy4 = (int) (newy1 + newx1 - fou.getX());
+
+        if (checkCanTurn(newx1, newx2, newx3, newx4, newy1, newy2, newy3, newy4)) {
+            two.setLocation(newx2, newy2);
+            thr.setLocation(newx3, newy3);
+            fou.setLocation(newx4, newy4);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkCanTurn(int x1, int x2, int x3, int x4, int y1, int y2, int y3, int y4) {
+        boolean block1 = board.canMove(x1 / Constants.blockSize, y1 / Constants.blockSize);
+        boolean block2 = board.canMove(x2 / Constants.blockSize, y2 / Constants.blockSize);
+        boolean block3 = board.canMove(x3 / Constants.blockSize, y3 / Constants.blockSize);
+        boolean block4 = board.canMove(x4 / Constants.blockSize, y4 / Constants.blockSize);
+        return (block1 && block2 && block3 && block4);
     }
 
 }

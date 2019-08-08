@@ -8,7 +8,7 @@ public class Square extends java.awt.geom.Rectangle2D.Double {
     private java.awt.Color borderColour;
     private java.awt.Color fillColour;
     private int rotation;
-    private final int strokeWidth = 2;
+    private final int strokeWidth = 0;
 
     public Square(Color colour) {
         //this.dimensions = dimensions;

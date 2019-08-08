@@ -10,8 +10,8 @@ public interface Movable {
 
     public boolean moveRight();
 
-    //public boolean turnLeft();
+    public boolean turnLeft();
 
-    //public boolean turnRight();
+    public boolean turnRight();
 
 }
