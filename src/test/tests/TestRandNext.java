@@ -1,10 +1,9 @@
 package tests;
 
 import org.junit.jupiter.api.BeforeEach;
-import ui.Constants;
 import ui.model.*;
 import ui.logic.Board;
-import model.RandNext;
+import logic.RandNext;
 import org.junit.jupiter.api.Test;
 import ui.model.pieces.*;
 

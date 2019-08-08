@@ -6,7 +6,7 @@ Supposed to handle global constants but there's only one I need to be global rig
 
 package ui;
 
-import model.TetrisProperties;
+import logic.TetrisProperties;
 import ui.logic.KeyInput;
 import ui.logic.ReadWebPageEx;
 

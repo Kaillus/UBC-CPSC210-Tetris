@@ -1,11 +1,10 @@
 package ui.logic;
 
-import model.RandNext;
+import logic.RandNext;
 import ui.model.PieceProxy;
 import ui.model.paint.Square;
 import ui.model.pieces.Piece;
 import ui.Constants;
-import ui.model.pieces.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -253,7 +252,7 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
-    
+
 /*
     //MODIFIES: this
     //EFFECTS: places an input Square's colour's number conversion on the board

@@ -1,6 +1,6 @@
 package ui;
 
-import model.TetrisProperties;
+import logic.TetrisProperties;
 
 import javax.swing.*;
 
