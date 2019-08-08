@@ -15,6 +15,10 @@ import java.util.Properties;
 
 public class TetrisProperties {
 
+    public TetrisProperties() {
+
+    }
+
     //REQUIRES: p is a file path accessible from application root directory
     //MODIFIES: Constants
     //EFFECTS: writes input integer to properties file located at path p. if file doesn't exist, it is created
