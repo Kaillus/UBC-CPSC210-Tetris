@@ -5,6 +5,7 @@ import ui.model.PieceProxy;
 import ui.model.paint.Square;
 import ui.model.pieces.Piece;
 import ui.Constants;
+import ui.model.pieces.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,8 +29,8 @@ public class Board extends JPanel implements ActionListener {
 
     //private Map<String, Piece> boardPieces;
     private PieceProxy proxy;
-    private Piece currentPiece;
-    private Piece savedPiece;
+    //private Piece currentPiece;
+    //private Piece savedPiece;
     //private int index;
     private RandNext randNext;
     private Timer timer;
@@ -43,24 +44,24 @@ public class Board extends JPanel implements ActionListener {
     //MODIFIES: this
     //EFFECTS: builds a new Board
     public Board(int width, int height) {
-        createKeyListeners(this);
-        this.boardHeight = height;
-        this.boardWidth = width;
-        this.pause = false;
-        this.end = false;
-        this.proxy = new PieceProxy();
-        randNext = new RandNext(this);
-        nextPiece();
         this.setBackground(Color.black);
         Dimension d = new Dimension(Constants.blockSize * width, Constants.blockSize * height);
         this.setSize(d);
         this.setPreferredSize(d);
+        this.boardHeight = height;
+        this.boardWidth = width;
+        this.pause = false;
+        this.end = false;
+        this.gameBoard = new Square[boardWidth][boardHeight];
+        this.timer = new Timer((500 / gameSpeed), this);
+        timer.start();
+        this.proxy = new PieceProxy();
+        randNext = new RandNext(this);
+        proxy.setPiece(nextPiece());
+        createKeyListeners(this);
         UIFrame.getContentPane().add(this);
         UIFrame.revalidate();
         UIFrame.repaint();
-        this.gameBoard = new Square[this.boardHeight][this.boardWidth];
-        this.timer = new Timer((500 / getTimerMultiplier(gameSpeed)), this);
-        timer.start();
     }
 
     private void createKeyListeners(Board board) {
@@ -79,6 +80,12 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+    private void endGame() {
+        timer.stop();
+        timer.removeActionListener(this);
+        State.getInstance().switchState(GAME_OVER);
+    }
+/*
     public Piece getCurrentPiece() {
         return currentPiece;
     }
@@ -90,11 +97,12 @@ public class Board extends JPanel implements ActionListener {
     public void setCurrentPiece(Piece piece) {
         currentPiece = piece;
     }
-
+*/
 
     //MODIFIES: this
     //EFFECTS: if savedPiece doesn't exist, simply moves the currentPiece to the savedPiece and generates a new piece.
     //         otherwise, swaps the currentPiece with the savedPiece and places the old savedPiece on the board
+    /*
     public void setSavedPiece() {
         if (savedPiece == null) {
             savedPiece = currentPiece;
@@ -106,6 +114,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+*/
     public Square[][] getBoardState() {
         return gameBoard;
     }
@@ -125,7 +134,6 @@ public class Board extends JPanel implements ActionListener {
     public boolean checkEndGame() {
         for (int i = 0; i < boardWidth; i++) {
             Square block = gameBoard[i][0];
-            System.out.println(block.getColour());
             if (block != null) {
                 end = true;
                 return end;
@@ -138,14 +146,7 @@ public class Board extends JPanel implements ActionListener {
     //MODIFIES: this
     //EFFECTS: gets the next piece from the upcoming pieces
     private Piece nextPiece() {
-        currentPiece = randNext.nextPiece();
-        System.out.println(currentPiece);
-        proxy.setPiece(currentPiece);
-        System.out.println(proxy);
-        return currentPiece;
-        //placePiece(currentPiece, boardWidth / 2, 0);
-        //System.out.println(boardWidth / 2);
-        //boardPieces.replace("currentPiece", currentPiece);
+        return randNext.nextPiece();
     }
 
     public void paintComponent(Graphics brush) {
@@ -153,12 +154,12 @@ public class Board extends JPanel implements ActionListener {
         Graphics2D betterBrush = (Graphics2D) brush;
 
         // put the current piece on the board
-        currentPiece.fill(betterBrush);
-        currentPiece.draw(betterBrush);
+        proxy.fill(betterBrush);
+        proxy.draw(betterBrush);
         // Put all other blocks on the board
         for (int i = 0; i < boardWidth; i++) {
             for (int j = 0; j < boardHeight; j++) {
-                Square block = gameBoard[j][i];
+                Square block = gameBoard[i][j];
                 if (block != null) {
                     block.draw(betterBrush);
                     block.fill(betterBrush);
@@ -170,7 +171,14 @@ public class Board extends JPanel implements ActionListener {
     //REQUIRES: board initialized
     //EFFECTS: returns colour located at input x, y
     public Color getColourByPos(int x, int y) {
-        return gameBoard[y][x].getColour();
+        return gameBoard[x][y].getColour();
+    }
+
+    //EFFECTS: checks to see if a piece can move in the input direction and returns a boolean based on testing.
+    //         the input values to loopCheck are in terms of dx and dy - if newX is 1, loopCheck checks to see if
+    //         movement to the current x values + 1 are possible and same for newY
+    public boolean canMove(int column, int row) {
+        return (isFree(column, row) && isValid(column, row));
     }
 
     //MODIFIES: this
@@ -187,37 +195,28 @@ public class Board extends JPanel implements ActionListener {
 
     //EFFECTS: checks to see if the given coordinates are within the bounds of the board
     private boolean isValid(int column, int row) {
-        return (column < boardWidth && row < boardHeight && column >= 0 && row >= 0);
+        //return (column < boardWidth && row < boardHeight && column >= 0 && row >= 0);
+        return (column < boardWidth && column >= 0 && row < boardHeight);
     }
-
-    //EFFECTS: checks to see if a piece can move in the input direction and returns a boolean based on testing.
-    //         the input values to loopCheck are in terms of dx and dy - if newX is 1, loopCheck checks to see if
-    //         movement to the current x values + 1 are possible and same for newY
-    public boolean canMove(int column, int row) {
-        return (isFree(column, row) && isValid(column, row));
-    }
-
 
     public void placePiece(Piece piece) {
         Square[] blocks = {piece.getOne(), piece.getTwo(), piece.getThr(), piece.getFou()};
         for (Square block : blocks) {
-            int x = (int) block.getSquareX();
-            int y = (int) block.getSquareY();
+            int x = (int) block.getX();
+            int y = (int) block.getY();
             int column = x / Constants.blockSize;
             int row = y / Constants.blockSize;
-
             try {
                 gameBoard[column][row] = block;
             } catch (ArrayIndexOutOfBoundsException e) {
                 //
             }
         }
-
         this.checkRows();
         if (checkEndGame()) {
-            State.getInstance().switchState(GAME_OVER);
+            endGame();
         } else {
-            proxy.setPiece(this.nextPiece());
+            proxy.setPiece(nextPiece());
         }
     }
 
@@ -226,13 +225,12 @@ public class Board extends JPanel implements ActionListener {
             return;
         }
         for (int i = row - 1; i >= 0; i--) {
-            System.out.println(row);
             for (int j = 0; j < boardWidth; j++) {
                 Square block = gameBoard[j][i];
                 gameBoard[j][i] = null;
                 gameBoard[j][i + 1] = block;
                 if (block != null) {
-                    block.setLocation(block.getSquareX(), block.getSquareY() + Constants.blockSize);
+                    block.setLocation(block.getX(), block.getY() + Constants.blockSize);
                 }
             }
         }
@@ -245,7 +243,7 @@ public class Board extends JPanel implements ActionListener {
         for (int j = 0; j < boardHeight; j++) {
             boolean rowCheck = true;
             for (int i = 0; i < boardWidth; i++) {
-                Square block = gameBoard[j][i];
+                Square block = gameBoard[i][j];
                 if (block == null) {
                     rowCheck = false;
                 }
@@ -255,13 +253,14 @@ public class Board extends JPanel implements ActionListener {
             }
         }
     }
-
+    
+/*
     //MODIFIES: this
     //EFFECTS: places an input Square's colour's number conversion on the board
     public void placeOnBoard(Square square) {
-        this.gameBoard[square.getSquareY()][square.getSquareX()] = square;
+        this.gameBoard[square.getY()][square.getX()] = square;
     }
-
+*/
     //MODIFIES: this
     //EFFECTS: if saved is true, switches the currentPiece with (and places) the input piece. else, moves the current
     //         piece to a new spot in the boardPieces hashmap (changing its key to object#) and
@@ -273,7 +272,7 @@ public class Board extends JPanel implements ActionListener {
             //incrementIndex();
             nextPiece();
         } else {
-            currentPiece = piece;
+            proxy.setPiece(piece);
         }
     }
 
@@ -282,7 +281,7 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    private class KeyDownListener extends KeyHandler {
+    private class KeyDownListener extends KeyInteractor {
 
         public KeyDownListener(JPanel panel) {
             super(panel, KeyEvent.VK_DOWN);
@@ -296,7 +295,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private class KeyLeftListener extends KeyHandler {
+    private class KeyLeftListener extends KeyInteractor {
 
         public KeyLeftListener(JPanel panel) {
             super(panel, KeyEvent.VK_LEFT);
@@ -310,7 +309,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private class KeyRightListener extends KeyHandler {
+    private class KeyRightListener extends KeyInteractor {
 
         public KeyRightListener(JPanel panel) {
             super(panel, KeyEvent.VK_LEFT);
@@ -324,7 +323,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private class KeySpaceListener extends KeyHandler {
+    private class KeySpaceListener extends KeyInteractor {
 
         public KeySpaceListener(JPanel panel) {
             super(panel, KeyEvent.VK_LEFT);
@@ -338,7 +337,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private class KeyTabListener extends KeyHandler {
+    private class KeyTabListener extends KeyInteractor {
 
         public KeyTabListener(JPanel panel) {
             super(panel, KeyEvent.VK_TAB);

@@ -3,11 +3,11 @@ package ui.logic;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public abstract class KeyHandler extends AbstractAction {
+public abstract class KeyInteractor extends AbstractAction {
 
-    private static final String commandPrefix = "KeyHandler";
+    private static final String commandPrefix = "KeyInteractor";
 
-    public KeyHandler(JComponent comp, int keyCode, int mod) {
+    public KeyInteractor(JComponent comp, int keyCode, int mod) {
         super();
         String actionID = commandPrefix + keyCode + "." + mod;
         InputMap imap = comp.getInputMap();
@@ -16,7 +16,7 @@ public abstract class KeyHandler extends AbstractAction {
         amap.put(actionID,this);
     }
 
-    public KeyHandler(JComponent comp, int keyCode) {
+    public KeyInteractor(JComponent comp, int keyCode) {
         this(comp, keyCode, 0);
     }
 

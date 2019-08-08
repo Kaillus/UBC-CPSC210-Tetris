@@ -4,29 +4,13 @@ import ui.model.pieces.SmartRectangle;
 
 import java.awt.*;
 
-public class Square extends SmartRectangle {
-    private int xpos;
-    private int ypos;
+public class Square extends java.awt.geom.Rectangle2D.Double {
     private java.awt.Color borderColour;
     private java.awt.Color fillColour;
     private int rotation;
     private final int strokeWidth = 2;
 
-    //MODIFIES: this
-    //EFFECTS: creates a Square with a colour (if empty, colour is empty), and x/y coordinates
-    public Square(Color colour, int x, int y) {
-        super(colour);
-        //this.dimensions = dimensions;
-        this.xpos = x;
-        this.ypos = y;
-        //System.out.println("Square!");
-        this.borderColour = colour;
-        this.fillColour = colour; // solid colour to start
-        this.rotation = 0;
-    }
-
     public Square(Color colour) {
-        super(colour);
         //this.dimensions = dimensions;
         //System.out.println("Square!");
         this.borderColour = colour;
@@ -46,25 +30,55 @@ public class Square extends SmartRectangle {
 
     //MODIFIES: this
     //EFFECTS: sets square colour to input colour
-    public void setColour(Color colour) {
+    public void setFillColour(Color colour) {
         this.fillColour = colour;
     }
 
-    //EFFECTS: returns input square's x
-    public int getSquareX() {
-        return this.xpos;
+    // methods not provided by Java
+    public void setBorderColour(java.awt.Color colour) {
+        this.borderColour = colour;
     }
 
-    //EFFECTS: returns input square's y
-    public int getSquareY() {
-        return this.ypos;
+    public void setColor(java.awt.Color colour) {
+        this.borderColour = colour;
+        this.fillColour = colour;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+    }
+
+    // more readable versions of methods provided by Java
+    public void setLocation(double x, double y) {
+        this.setFrame(x, y, this.getWidth(), this.getHeight());
+    }
+
+    public void setSize(int width, int height) {
+        this.setFrame(this.getX(), this.getY(), width, height);
+    }
+
+    // not provided by Java
+    public void fill(java.awt.Graphics2D brush) {
+        java.awt.Color oldColour = brush.getColor();
+        brush.setColor(fillColour);
+        brush.fill(this);
+        brush.setColor(oldColour);
+    }
+
+    public void draw(java.awt.Graphics2D brush) {
+        java.awt.Color oldColour = brush.getColor();
+        brush.setColor(borderColour);
+        java.awt.Stroke oldStroke = brush.getStroke();
+        brush.setStroke(new java.awt.BasicStroke(strokeWidth));
+        brush.draw(this);
+        brush.setStroke(oldStroke);
+        brush.setColor(oldColour);
     }
 
     //MODIFIES: this
     //EFFECTS: sets a Square's position on the grid
     public void setPosition(int x, int y) {
-        this.xpos = x;
-        this.ypos = y;
+        this.setFrame(x, y, this.getWidth(), this.getHeight());
     }
 
 }

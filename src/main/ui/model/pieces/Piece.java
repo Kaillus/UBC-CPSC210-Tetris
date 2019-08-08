@@ -88,7 +88,6 @@ public abstract class Piece implements Animatable {
     }
 
     public boolean moveRight() {
-        System.out.println("right");
         int newx1 = (int) one.getX() + Constants.blockSize;
         int newx2 = (int) two.getX() + Constants.blockSize;
         int newx3 = (int) thr.getX() + Constants.blockSize;
@@ -121,14 +120,14 @@ public abstract class Piece implements Animatable {
         boolean block4 = board.canMove((int) fou.getY() / Constants.blockSize, newy4 / Constants.blockSize);
 
         if (block1 && block2 && block3 && block4) {
-            one.setLocation(one.getX(), newy1);
-            two.setLocation(two.getX(), newy2);
-            thr.setLocation(thr.getX(), newy3);
-            fou.setLocation(fou.getX(), newy4);
+            one.setLocation((int) one.getX(), newy1);
+            two.setLocation((int) two.getX(), newy2);
+            thr.setLocation((int) thr.getX(), newy3);
+            fou.setLocation((int) fou.getX(), newy4);
             return true;
         }
-
         board.placePiece(this);
+
 
         return false;
     }
