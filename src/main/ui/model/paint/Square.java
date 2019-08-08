@@ -1,7 +1,5 @@
 package ui.model.paint;
 
-import ui.model.pieces.SmartRectangle;
-
 import java.awt.*;
 
 public class Square extends java.awt.geom.Rectangle2D.Double {
