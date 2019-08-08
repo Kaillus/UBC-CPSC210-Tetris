@@ -38,10 +38,11 @@ public class Board extends JPanel implements ActionListener {
     //MODIFIES: this
     //EFFECTS: builds a new Board
     public Board(int width, int height) {
-        this.setBackground(Color.black);
+        this.setBackground(Color.gray);
         Dimension d = new Dimension(Constants.blockSize * width, Constants.blockSize * height);
         this.setSize(d);
         this.setPreferredSize(d);
+        this.setLocation(100,0);
         this.boardHeight = height;
         this.boardWidth = width;
         this.pause = false;
@@ -67,39 +68,9 @@ public class Board extends JPanel implements ActionListener {
 
     private void endGame() {
         timer.stop();
-        timer.removeActionListener(this);
         State.getInstance().switchState(GAME_OVER);
     }
-/*
-    public Piece getCurrentPiece() {
-        return currentPiece;
-    }
 
-    public Piece getSavedPiece() {
-        return savedPiece;
-    }
-
-    public void setCurrentPiece(Piece piece) {
-        currentPiece = piece;
-    }
-*/
-
-    //MODIFIES: this
-    //EFFECTS: if savedPiece doesn't exist, simply moves the currentPiece to the savedPiece and generates a new piece.
-    //         otherwise, swaps the currentPiece with the savedPiece and places the old savedPiece on the board
-    /*
-    public void setSavedPiece() {
-        if (savedPiece == null) {
-            savedPiece = currentPiece;
-            nextPiece();
-        } else {
-            Piece tempCurrent = currentPiece;
-            placeNextPiece(savedPiece, true);
-            savedPiece = tempCurrent;
-        }
-    }
-
-*/
     public Square[][] getBoardState() {
         return gameBoard;
     }
@@ -128,18 +99,6 @@ public class Board extends JPanel implements ActionListener {
         return timer;
     }
 
-    public boolean checkEndGame() {
-        for (int i = 0; i < boardWidth; i++) {
-            Square block = gameBoard[0][i];
-            if (block != null) {
-                end = true;
-                return end;
-            }
-        }
-        end = false;
-        return end;
-    }
-
     //MODIFIES: this
     //EFFECTS: gets the next piece from the upcoming pieces
     private Piece nextPiece() {
@@ -165,22 +124,18 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    //EFFECTS: checks to see if a piece can move in the input direction and returns a boolean based on testing.
-    //         the input values to loopCheck are in terms of dx and dy - if newX is 1, loopCheck checks to see if
-    //         movement to the current x values + 1 are possible and same for newY
+    //EFFECTS: checks to see if a piece can move into the given coordinates.
     public boolean canMove(int column, int row) {
         return (isFree(column, row) && isValid(column, row));
     }
 
     //MODIFIES: this
-    //EFFECTS: checks to see if the given coordinates are in the list of current coordinates or are empty spaces
-    //         current coordinates meaning they're part of the current block, and so if the piece moves that way
-    //         it won't be moving into a conflicting spot
+    //EFFECTS: checks to see if the given coordinates point to a location on the board that is null.
     private boolean isFree(int column, int row) {
         try {
             return (gameBoard[row][column] == null);
         } catch (ArrayIndexOutOfBoundsException e) {
-            return true;
+            return false;
         }
     }
 
@@ -190,6 +145,10 @@ public class Board extends JPanel implements ActionListener {
         return (column < boardWidth && column >= 0 && row < boardHeight);
     }
 
+    //MODIFIES: this
+    //EFFECTS: tries to place all the blocks in the given piece on the board. then, checks the rows to see if
+    //         a line has been filled up (horizontally). then, checks to see if one column is full (vertically). if so,
+    //         ends the game. if not, generates the next piece.
     public void placePiece(Piece piece) {
         Square[] blocks = {piece.getOne(), piece.getTwo(), piece.getThr(), piece.getFou()};
         for (Square block : blocks) {
@@ -211,6 +170,40 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: checks to see if one column is full (vertically). if so, sets end to true.
+    public boolean checkEndGame() {
+        for (int i = 0; i < boardWidth; i++) {
+            Square block = gameBoard[0][i];
+            if (block != null) {
+                end = true;
+                return end;
+            }
+        }
+        end = false;
+        return end;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: checks to see if a row (horizontal) is full. if so, delete the row and move all the blocks above it on
+    //         the board down one row.
+    private void checkRows() {
+        for (int j = 0; j < boardHeight; j++) {
+            boolean rowCheck = true;
+            for (int i = 0; i < boardWidth; i++) {
+                Square block = gameBoard[j][i];
+                if (block == null) {
+                    rowCheck = false;
+                }
+            }
+            if (rowCheck) {
+                moveBlocksDown(j);
+            }
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: deletes a row and moves the blocks above it down.
     private void moveBlocksDown(int row) {
         if ((row < 0) || (row >= boardHeight)) {
             return;
@@ -227,21 +220,6 @@ public class Board extends JPanel implements ActionListener {
         }
         for (int i = 0; i < boardWidth; i++) {
             gameBoard[i][0] = null;
-        }
-    }
-
-    private void checkRows() {
-        for (int j = 0; j < boardHeight; j++) {
-            boolean rowCheck = true;
-            for (int i = 0; i < boardWidth; i++) {
-                Square block = gameBoard[j][i];
-                if (block == null) {
-                    rowCheck = false;
-                }
-            }
-            if (rowCheck) {
-                moveBlocksDown(j);
-            }
         }
     }
 

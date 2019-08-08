@@ -10,6 +10,7 @@ package ui.logic;
 
 import model.Game;
 import model.java.UnknownStateException;
+import ui.DrawGameOver;
 import ui.DrawMenu;
 import ui.DrawPack;
 import ui.DrawState;
@@ -65,7 +66,7 @@ public class State extends DrawPack {
                     break;
 
                 case GAME_OVER:
-                    //call UI to draw GAME_OVER
+                    stateDrawGameOver();
                     break;
 
                 default:
@@ -81,6 +82,10 @@ public class State extends DrawPack {
     private void stateDrawGame() {
         shutdown();
         Game.getInstance().makeBoard();
+    }
+
+    private void stateDrawGameOver() {
+        DrawGameOver gameOver = new DrawGameOver();
     }
 
     private void throwDebugFail() {

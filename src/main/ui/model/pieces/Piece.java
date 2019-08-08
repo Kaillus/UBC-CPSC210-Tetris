@@ -66,7 +66,6 @@ public abstract class Piece implements Animatable {
     }
 
     public boolean moveLeft() {
-        System.out.println("left");
         int newx1 = (int) one.getX() - Constants.blockSize;
         int newx2 = (int) two.getX() - Constants.blockSize;
         int newx3 = (int) thr.getX() - Constants.blockSize;
