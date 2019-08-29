@@ -6,11 +6,18 @@ Features failed to be properly implemented in time: proper GUI while ingame, sou
 
 ESC: emergency escape (closes the window)
 
+
 Menu:
+
 Backspace: opens options, adjust game speed (higher is faster)
+
 Enter: begin game
 
+
 Game:
+
 Arrow keys: move the piece (up arrow does nothing)
+
 Z: rotate left
+
 C: rotate right
