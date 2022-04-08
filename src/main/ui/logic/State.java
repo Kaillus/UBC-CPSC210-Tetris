@@ -52,6 +52,7 @@ public class State extends DrawPack {
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
     public void switchState(States switchToState) {
+        previousState = currentState;
         if (currentState != switchToState) {
             setState(switchToState);
             switch (currentState) {
@@ -79,7 +80,7 @@ public class State extends DrawPack {
 
     private void stateDrawGame() {
         shutdown();
-        game = new Game();
+        Game.getInstance().makeBoard();
     }
 
     private void throwDebugFail() {

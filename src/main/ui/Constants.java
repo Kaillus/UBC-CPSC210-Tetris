@@ -21,7 +21,7 @@ public final class Constants {
 
     public static int gameSpeed;
 
-    public static final int blockSize = 25;
+    public static final int blockSize = 15;
 
     public static final int boardHeight = 20;
     public static final int boardWidth = 10;

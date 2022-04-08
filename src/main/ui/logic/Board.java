@@ -34,11 +34,6 @@ public class Board extends JPanel implements ActionListener {
     private RandNext randNext;
     private Timer timer;
     private int timerMultiplier;
-    private KeyDownListener downKey;
-    private KeyLeftListener leftKey;
-    private KeyRightListener rightKey;
-    private KeySpaceListener spaceKey;
-    private KeyTabListener pauseKey;
 
     //MODIFIES: this
     //EFFECTS: builds a new Board
@@ -51,28 +46,19 @@ public class Board extends JPanel implements ActionListener {
         this.boardWidth = width;
         this.pause = false;
         this.end = false;
-        this.gameBoard = new Square[boardWidth][boardHeight];
-        this.timer = new Timer((500 / gameSpeed), this);
+        this.gameBoard = new Square[boardHeight][boardWidth];
+        this.timer = new Timer((500 / getTimerMultiplier(gameSpeed)), this);
         timer.start();
         this.proxy = new PieceProxy();
         randNext = new RandNext(this);
         proxy.setPiece(nextPiece());
-        createKeyListeners(this);
         UIFrame.getContentPane().add(this);
         UIFrame.revalidate();
         UIFrame.repaint();
     }
 
-    private void createKeyListeners(Board board) {
-        downKey = new KeyDownListener(board);
-        leftKey = new KeyLeftListener(board);
-        rightKey = new KeyRightListener(board);
-        spaceKey = new KeySpaceListener(board);
-        pauseKey = new KeyTabListener(board);
-    }
-
     private int getTimerMultiplier(int gameSpeed) {
-        if (gameSpeed < 1 || gameSpeed > 10) {
+        if (gameSpeed < 1 || gameSpeed > 11) {
             return 1;
         } else {
             return gameSpeed;
@@ -126,13 +112,25 @@ public class Board extends JPanel implements ActionListener {
         return this.boardWidth;
     }
 
-    public boolean checkPause() {
-        return pause;
+    public void setPause(boolean p) {
+        pause = p;
+    }
+
+    public PieceProxy getProxy() {
+        return proxy;
+    }
+
+    public void repaintBoard() {
+        repaint();
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 
     public boolean checkEndGame() {
         for (int i = 0; i < boardWidth; i++) {
-            Square block = gameBoard[i][0];
+            Square block = gameBoard[0][i];
             if (block != null) {
                 end = true;
                 return end;
@@ -158,19 +156,13 @@ public class Board extends JPanel implements ActionListener {
         // Put all other blocks on the board
         for (int i = 0; i < boardWidth; i++) {
             for (int j = 0; j < boardHeight; j++) {
-                Square block = gameBoard[i][j];
+                Square block = gameBoard[j][i];
                 if (block != null) {
                     block.draw(betterBrush);
                     block.fill(betterBrush);
                 }
             }
         }
-    }
-
-    //REQUIRES: board initialized
-    //EFFECTS: returns colour located at input x, y
-    public Color getColourByPos(int x, int y) {
-        return gameBoard[x][y].getColour();
     }
 
     //EFFECTS: checks to see if a piece can move in the input direction and returns a boolean based on testing.
@@ -186,7 +178,7 @@ public class Board extends JPanel implements ActionListener {
     //         it won't be moving into a conflicting spot
     private boolean isFree(int column, int row) {
         try {
-            return (gameBoard[column][row] == null);
+            return (gameBoard[row][column] == null);
         } catch (ArrayIndexOutOfBoundsException e) {
             return true;
         }
@@ -206,7 +198,7 @@ public class Board extends JPanel implements ActionListener {
             int column = x / Constants.blockSize;
             int row = y / Constants.blockSize;
             try {
-                gameBoard[column][row] = block;
+                gameBoard[row][column] = block;
             } catch (ArrayIndexOutOfBoundsException e) {
                 //
             }
@@ -225,9 +217,9 @@ public class Board extends JPanel implements ActionListener {
         }
         for (int i = row - 1; i >= 0; i--) {
             for (int j = 0; j < boardWidth; j++) {
-                Square block = gameBoard[j][i];
-                gameBoard[j][i] = null;
-                gameBoard[j][i + 1] = block;
+                Square block = gameBoard[i][j];
+                gameBoard[i][j] = null;
+                gameBoard[i + 1][j] = block;
                 if (block != null) {
                     block.setLocation(block.getX(), block.getY() + Constants.blockSize);
                 }
@@ -242,7 +234,7 @@ public class Board extends JPanel implements ActionListener {
         for (int j = 0; j < boardHeight; j++) {
             boolean rowCheck = true;
             for (int i = 0; i < boardWidth; i++) {
-                Square block = gameBoard[i][j];
+                Square block = gameBoard[j][i];
                 if (block == null) {
                     rowCheck = false;
                 }
@@ -253,106 +245,9 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-/*
-    //MODIFIES: this
-    //EFFECTS: places an input Square's colour's number conversion on the board
-    public void placeOnBoard(Square square) {
-        this.gameBoard[square.getY()][square.getX()] = square;
-    }
-*/
-    //MODIFIES: this
-    //EFFECTS: if saved is true, switches the currentPiece with (and places) the input piece. else, moves the current
-    //         piece to a new spot in the boardPieces hashmap (changing its key to object#) and
-    //         increments the index + generates next piece
-    public void placeNextPiece(Piece piece, boolean saved) {
-        if (!saved) {
-            //String objName = "object" + Integer.toString(index);
-            //boardPieces.put(objName, currentPiece);
-            //incrementIndex();
-            nextPiece();
-        } else {
-            proxy.setPiece(piece);
-        }
-    }
-
     public void actionPerformed(ActionEvent e) {
         proxy.moveDown();
         repaint();
-    }
-
-    private class KeyDownListener extends KeyInteractor {
-
-        public KeyDownListener(JPanel panel) {
-            super(panel, KeyEvent.VK_DOWN);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            if (!pause && !end) {
-                proxy.moveDown();
-                repaint();
-            }
-        }
-    }
-
-    private class KeyLeftListener extends KeyInteractor {
-
-        public KeyLeftListener(JPanel panel) {
-            super(panel, KeyEvent.VK_LEFT);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            if (!pause && !end) {
-                proxy.moveLeft();
-                repaint();
-            }
-        }
-    }
-
-    private class KeyRightListener extends KeyInteractor {
-
-        public KeyRightListener(JPanel panel) {
-            super(panel, KeyEvent.VK_LEFT);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            if (!pause && !end) {
-                proxy.moveRight();
-                repaint();
-            }
-        }
-    }
-
-    private class KeySpaceListener extends KeyInteractor {
-
-        public KeySpaceListener(JPanel panel) {
-            super(panel, KeyEvent.VK_LEFT);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            if (!pause && !(State.getInstance().getState() == GAME_OVER)) {
-                proxy.moveDown();
-                repaint();
-            }
-        }
-    }
-
-    private class KeyTabListener extends KeyInteractor {
-
-        public KeyTabListener(JPanel panel) {
-            super(panel, KeyEvent.VK_TAB);
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            if (timer.isRunning()) {
-                timer.stop();
-                pause = true;
-            } else {
-                if (!(State.getInstance().getState() == GAME_OVER)) {
-                    timer.start();
-                    pause = false;
-                }
-            }
-        }
     }
 
 }

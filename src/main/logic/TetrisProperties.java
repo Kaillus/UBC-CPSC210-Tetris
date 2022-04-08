@@ -50,6 +50,7 @@ public class TetrisProperties {
             throw new IOException();
         }
 
+
         try (InputStream input = new FileInputStream(p)) {
 
             Properties prop = new Properties();
@@ -63,7 +64,7 @@ public class TetrisProperties {
         } catch (IOException ex) {
             System.out.println("Failed reading of properties file at " + p);
             ex.printStackTrace();
-            return 10;
+            return 1;
         }
     }
 

@@ -18,10 +18,6 @@ public class PieceProxy implements Animatable {
         piece.draw(brush);
     }
 
-    //public boolean moveUp() {
-    //    return piece.moveUp();
-    //}
-
     public boolean moveDown() {
         return piece.moveDown();
     }
@@ -34,12 +30,12 @@ public class PieceProxy implements Animatable {
         return piece.moveRight();
     }
 
-    /*public boolean turnLeft() {
+    public boolean turnLeft() {
         return piece.turnLeft();
     }
 
     public boolean turnRight() {
         return piece.turnRight();
-    }*/
+    }
     
 }
