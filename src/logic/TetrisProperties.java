@@ -10,18 +10,17 @@ File handling code itself not written by me, only adapted to fit my project setu
 
 package logic;
 
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class TetrisProperties {
 
-    public static void writeToProperties(int i) {
+    //REQUIRES: p is a file path accessible from application root directory
+    //MODIFIES: Constants
+    //EFFECTS: writes input integer to properties file located at path p. if file doesn't exist, it is created
+    public static void writeToProperties(int i, String p) {
 
-        try (OutputStream output = new FileOutputStream("config.properties")) {
+        try (OutputStream output = new FileOutputStream(p)) {
 
             Properties prop = new Properties();
 
@@ -39,9 +38,17 @@ public class TetrisProperties {
 
     }
 
-    public static int readFromProperties() {
+    //EFFECTS: reads stored values in properties file located at path p. if properties file at p does not exist,
+    //         returns -1
+    public static int readFromProperties(String p) {
 
-        try (InputStream input = new FileInputStream("config.properties")) {
+        File properties = new File(p);
+        if (!properties.isFile()) {
+            System.out.println("File missing: couldn't read file at " + p);
+            return -1;
+        }
+
+        try (InputStream input = new FileInputStream(p)) {
 
             Properties prop = new Properties();
 

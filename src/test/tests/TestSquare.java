@@ -14,14 +14,14 @@ public class TestSquare {
 
     @Before
     public void setup() {
-        square = new Square(true,null,0,0);
+        square = new Square("empty",0,0);
     }
 
     @Test
-    public void testEmpty() {
+    public void testColourChange() {
         assertTrue(square.isEmpty());
         System.out.println(square.isEmpty());
-        square.switchEmpty();
+        square.setColour("red");
         assertFalse(square.isEmpty());
         System.out.println(square.isEmpty());
     }
@@ -35,15 +35,6 @@ public class TestSquare {
         assertEquals(square.getX(), 1);
         assertEquals(square.getY(), -1);
         System.out.println(square.getX() + ", " + square.getY());
-    }
-
-    @Test
-    public void testColourChange() {
-        System.out.println(square.getColour());
-        assertEquals(square.getColour(), null);
-        square.setColour("blue");
-        assertEquals(square.getColour(), "blue");
-        System.out.println(square.getColour());
     }
 
 }

@@ -6,23 +6,27 @@ Supposed to handle global constants but there's only one I need to be global rig
 
 package logic;
 
+import javax.swing.*;
 import java.io.File;
 
 public class Constants {
 
+    public static JFrame TetrisFrame = new JFrame("Not Tetris");
+
     public static int gameSpeed;
-    private int initialSpeed = 1;
 
     //MODIFIES: this
     //EFFECTS: initializes global constants and default values
-    public void initConstants() {
+    public static void initConstants() {
+        int initialSpeed = 1;
+        String configPath = "config.properties";
 
-        File properties = new File("config.properties");
+        File properties = new File(configPath);
         if (properties.isFile()) {
-            gameSpeed = TetrisProperties.readFromProperties();
+            gameSpeed = TetrisProperties.readFromProperties(configPath);
         } else {
             gameSpeed = initialSpeed;
-            TetrisProperties.writeToProperties(initialSpeed);
+            TetrisProperties.writeToProperties(initialSpeed, configPath);
         }
     }
 

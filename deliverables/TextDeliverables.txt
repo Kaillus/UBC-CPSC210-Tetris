@@ -23,3 +23,15 @@ added Game class which will handle real-time game logic, added DrawState class w
 - Debugger: find currentState and see if problems are due to currentState being incorrectly assigned
 
 10/07/19: Deliverable 03 - added specifications to basically every method and added tests for Square and State
+
+15/07/19: Deliverable 04 - added options panel for configuring gameSpeed (not yet tied to any functionality) which
+saves to local file and maintains value between sessions and tests for this save/load system, converted DrawState into
+interface system (along with DrawMenu and DrawGame), added Animatables interface for all animatable game elements,
+implemented every Tetrimino piece through Animatables, added Board class to handle the game board, and tests to make
+sure the Animatable game pieces place correctly on the board, added Printer for printing
+
+- Save/Load Options (currently only gameSpeed), tests in TestTetrisProperties
+- Introduced Animatables, DrawState, and Printer as three new interfaces
+- KeyInput implements both Closeable and Printer at the same time
+- Each subtype of Animatables has tests in TestPieces and technically DrawState does too in TestState
+- Interface/Implementation instantiation thing is done in every written instance of each Animatable and DrawState
