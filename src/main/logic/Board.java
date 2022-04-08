@@ -40,7 +40,7 @@ public class Board {
         return 0;
     }
 
-    private void iterateIndex() {
+    private void incrementIndex() {
         index = index + 1;
     }
 
@@ -58,7 +58,7 @@ public class Board {
     private void placeNextPiece(Animatable piece) {
         //String objName = "object" + Integer.toString(index);
         //boardPieces.put(objName, currentPiece)
-        iterateIndex();
+        incrementIndex();
         genPiece();
     }
 
