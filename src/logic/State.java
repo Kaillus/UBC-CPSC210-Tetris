@@ -10,11 +10,12 @@ package logic;
 
 import ui.DrawGame;
 import ui.DrawMenu;
+import ui.DrawPack;
 import ui.DrawState;
 
 import static logic.State.States.MENU;
 
-public class State {
+public class State extends DrawPack {
 
     public enum States {
         MENU, GAME, PAUSE, GAME_OVER
@@ -25,7 +26,7 @@ public class State {
     //REQUIRES: currentState initialized
     //EFFECTS: returns currentState
     public static States getState() {
-        System.out.println("State is currently: " + currentState);
+        //System.out.println("State is currently: " + currentState);
         return currentState;
     }
 
@@ -47,7 +48,7 @@ public class State {
                 break;
 
             case GAME:
-                DrawState.shutdown();
+                shutdown();
                 DrawState drawGame = new DrawGame();
                 drawGame.draw();
                 break;
@@ -66,5 +67,10 @@ public class State {
         }
     }
 
+
+
+    @Override
+    public void background() {
+    }
 
 }

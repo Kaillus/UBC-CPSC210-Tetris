@@ -14,7 +14,7 @@ import model.Square;
 //import model.pieces.LPiece;
 //import logic.RandNext;
 
-public class Main {
+public class NotTetris {
 
     //MODIFIES: State
     //EFFECTS: initializes game by switching State to MENU and drawing menu
@@ -26,7 +26,7 @@ public class Main {
     //EFFECTS: ditto ^
     public static void main(String[] args) {
         // initialize UI
-        System.out.println("Main: Initializing UI");
+        System.out.println("NotTetris: Initializing UI");
         initMenu();
     }
 }
