@@ -8,6 +8,7 @@ Debug: currentState
 
 package ui;
 
+import logic.Game;
 import logic.java.UnknownStateException;
 
 public class State extends DrawPack {
@@ -21,6 +22,8 @@ public class State extends DrawPack {
     private States previousState;
 
     private static final State INSTANCE = new State();
+
+    private Game game;
 
     private State() {
     }
@@ -78,8 +81,8 @@ public class State extends DrawPack {
 
     private void stateDrawGame() {
         shutdown();
-        DrawState drawGame = new DrawGame();
-        drawGame.init();
+        game = new Game();
+
     }
 
     private void throwDebugFail() {

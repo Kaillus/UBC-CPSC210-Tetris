@@ -7,8 +7,10 @@ Generates next pieces for use in game
 
 package logic;
 
+import model.Animatable;
 import model.pieces.Piece;
 import model.pieces.*;
+import ui.Board;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +18,7 @@ import java.util.Collections;
 public class RandNext {
 
     private static ArrayList<String> baseBag = new ArrayList<>();
-    private ArrayList<Piece> currentBag = new ArrayList<>();
+    private ArrayList<Piece> currentBag;
     private Piece targetPiece;
     private int sevenSetCounter;
     private Board board;
@@ -32,8 +34,13 @@ public class RandNext {
     }
 
     public RandNext(Board board) {
+        this.currentBag = new ArrayList<>();
         this.sevenSetCounter = 6;
         this.board = board;
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
+        currentBag.add(getRandom());
     }
 
     //MODIFIES: this
@@ -47,6 +54,15 @@ public class RandNext {
             sevenSetCounter = sevenSetCounter + 1;
         }
         return generatePiece(baseBag.get(sevenSetCounter));
+    }
+
+    //MODIFIES: this
+    //EFFECTS: returns and removes the first (latest) entry in the pieces coming up and generates a new one at the tail
+    public Piece nextPiece() {
+        Piece latest = currentBag.get(0);
+        currentBag.remove(0);
+        currentBag.add(getRandom());
+        return latest;
     }
 
     //MODIFIES: this
@@ -85,27 +101,6 @@ public class RandNext {
                 targetPiece = new SPiece(board, board.getBoardWidth() / 2, 0);
                 break;
         }
-    }
-
-    //REQUIRES: initNext not being previously run in current game instance
-    //MODIFIES: this
-    //EFFECTS: initializes next four pieces for use in game
-    public ArrayList<Piece> initNext() {
-        currentBag.add(getRandom());
-        currentBag.add(getRandom());
-        currentBag.add(getRandom());
-        currentBag.add(getRandom());
-        //TODO: send currentBag to be drawn by UI
-        return currentBag;
-    }
-
-    //MODIFIES: this
-    //EFFECTS: returns and removes the first (latest) entry in the pieces coming up and generates a new one at the tail
-    public Piece nextPiece() {
-        Piece latest = currentBag.get(0);
-        currentBag.remove(0);
-        currentBag.add(getRandom());
-        return latest;
     }
 
     public int getSize() {

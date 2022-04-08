@@ -1,9 +1,7 @@
 package model;
 
-import logic.Board;
+import model.paint.Paintable;
 
-public interface Animatable {
-
-    void draw(Board board, int x, int y);
+public interface Animatable extends Movable, Paintable {
 
 }

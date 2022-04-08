@@ -1,114 +1,137 @@
 package model.pieces;
 
-import logic.Board;
-import model.paint.Paintable;
 import model.Animatable;
 import model.paint.Square;
-import model.paint.SmartRectangle;
+import ui.Board;
 import ui.Constants;
-import ui.PieceObserver;
 import ui.PieceSubject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public abstract class Piece extends PieceSubject implements Animatable, Paintable {
+public abstract class Piece extends PieceSubject implements Animatable {
 
     protected Square one;
     protected Square two;
     protected Square thr;
     protected Square fou;
 
+    protected int xpos;
+    protected int ypos;
     protected Color colour;
     protected Board board;
 
     public Piece(Board board, Color colour) {
         this.colour = colour;
         one = new Square(colour);
+        one.setSize(Constants.blockSize, Constants.blockSize);
         two = new Square(colour);
+        two.setSize(Constants.blockSize, Constants.blockSize);
         thr = new Square(colour);
+        thr.setSize(Constants.blockSize, Constants.blockSize);
         fou = new Square(colour);
+        fou.setSize(Constants.blockSize, Constants.blockSize);
         this.board = board;
         this.observers.add(board);
     }
 
-    @Override
-    public void fill(java.awt.Graphics2D brush) {
-        one.fill(brush);
-        two.fill(brush);
-        thr.fill(brush);
-        fou.fill(brush);
-    }
-
-    @Override
-    public void draw(java.awt.Graphics2D brush) {
+    public void draw(Graphics2D brush) {
         one.draw(brush);
         two.draw(brush);
         thr.draw(brush);
         fou.draw(brush);
     }
 
-
-    protected void setOne(Color colour, int x, int y) {
-        this.one = new Square(colour,x,y);
+    public void fill(Graphics2D brush) {
+        one.fill(brush);
+        two.fill(brush);
+        thr.fill(brush);
+        fou.fill(brush);
     }
 
-    protected void setTwo(Color colour, int x, int y) {
-        this.two = new Square(colour,x,y);
+
+    public abstract void setPos(int x, int y);
+
+    public Square getOne() {
+        return one;
     }
 
-    protected void setThr(Color colour, int x, int y) {
-        this.thr = new Square(colour,x,y);
+    public Square getTwo() {
+        return two;
     }
 
-    protected void setFou(Color colour, int x, int y) {
-        this.fou = new Square(colour,x,y);
+    public Square getThr() {
+        return thr;
     }
 
-    public void moveLeft() {
-        notifyObservers(one, 2);
-        notifyObservers(two, 2);
-        notifyObservers(thr, 2);
-        notifyObservers(fou, 2);
+    public Square getFou() {
+        return fou;
     }
 
-    public void moveRight() {
-        notifyObservers(one, 3);
-        notifyObservers(two, 3);
-        notifyObservers(thr, 3);
-        notifyObservers(fou, 3);
+    public boolean moveLeft() {
+        System.out.println("left");
+        int newx1 = (int) one.getX() - Constants.blockSize;
+        int newx2 = (int) two.getX() - Constants.blockSize;
+        int newx3 = (int) thr.getX() - Constants.blockSize;
+        int newx4 = (int) fou.getX() - Constants.blockSize;
+        boolean block1 = board.canMove(newx1 / Constants.blockSize, (int) one.getY() / Constants.blockSize);
+        boolean block2 = board.canMove(newx2 / Constants.blockSize, (int) two.getY() / Constants.blockSize);
+        boolean block3 = board.canMove(newx3 / Constants.blockSize, (int) thr.getY() / Constants.blockSize);
+        boolean block4 = board.canMove(newx4 / Constants.blockSize, (int) fou.getY() / Constants.blockSize);
+
+        if (block1 && block2 && block3 && block4) {
+            one.setLocation(newx1,one.getY());
+            two.setLocation(newx2,two.getY());
+            thr.setLocation(newx3,thr.getY());
+            fou.setLocation(newx4,fou.getY());
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void moveDown() {
-        notifyObservers(one, 1);
-        notifyObservers(two, 1);
-        notifyObservers(thr, 1);
-        notifyObservers(fou, 1);
-        System.out.println("notified observers");
+    public boolean moveRight() {
+        System.out.println("right");
+        int newx1 = (int) one.getX() + Constants.getInstance().blockSize;
+        int newx2 = (int) two.getX() + Constants.getInstance().blockSize;
+        int newx3 = (int) thr.getX() + Constants.getInstance().blockSize;
+        int newx4 = (int) fou.getX() + Constants.getInstance().blockSize;
+        boolean block1 = board.canMove(newx1 / Constants.blockSize, (int) one.getY() / Constants.blockSize);
+        boolean block2 = board.canMove(newx2 / Constants.blockSize, (int) two.getY() / Constants.blockSize);
+        boolean block3 = board.canMove(newx3 / Constants.blockSize, (int) thr.getY() / Constants.blockSize);
+        boolean block4 = board.canMove(newx4 / Constants.blockSize, (int) fou.getY() / Constants.blockSize);
+
+        if (block1 && block2 && block3 && block4) {
+            one.setLocation(newx1,one.getY());
+            two.setLocation(newx2,two.getY());
+            thr.setLocation(newx3,thr.getY());
+            fou.setLocation(newx4,fou.getY());
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public ArrayList<ArrayList<Integer>> getPos() {
-        ArrayList<ArrayList<Integer>> squarePos = new ArrayList<>();
-        ArrayList<Integer> onePos = new ArrayList<>();
-        onePos.add(one.getSquareX());
-        onePos.add(one.getSquareY());
-        squarePos.add(onePos);
-        ArrayList<Integer> twoPos = new ArrayList<>();
-        twoPos.add(two.getSquareX());
-        twoPos.add(two.getSquareY());
-        squarePos.add(twoPos);
-        ArrayList<Integer> thrPos = new ArrayList<>();
-        thrPos.add(thr.getSquareX());
-        thrPos.add(thr.getSquareY());
-        squarePos.add(thrPos);
-        ArrayList<Integer> fouPos = new ArrayList<>();
-        fouPos.add(fou.getSquareX());
-        fouPos.add(fou.getSquareY());
-        squarePos.add(fouPos);
+    public boolean moveDown() {
+        int newy1 = (int) one.getY() + Constants.getInstance().blockSize;
+        int newy2 = (int) two.getY() + Constants.getInstance().blockSize;
+        int newy3 = (int) thr.getY() + Constants.getInstance().blockSize;
+        int newy4 = (int) fou.getY() + Constants.getInstance().blockSize;
 
-        return squarePos;
+        boolean block1 = board.canMove((int) one.getY() / Constants.blockSize, newy1 / Constants.blockSize);
+        boolean block2 = board.canMove((int) two.getY() / Constants.blockSize, newy2 / Constants.blockSize);
+        boolean block3 = board.canMove((int) thr.getY() / Constants.blockSize, newy3 / Constants.blockSize);
+        boolean block4 = board.canMove((int) fou.getY() / Constants.blockSize, newy4 / Constants.blockSize);
+
+        if (block1 && block2 && block3 && block4) {
+            one.setLocation(one.getX(), newy1);
+            two.setLocation(two.getX(), newy2);
+            thr.setLocation(thr.getX(), newy3);
+            fou.setLocation(fou.getX(), newy4);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
