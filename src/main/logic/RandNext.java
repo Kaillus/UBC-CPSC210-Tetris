@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandNext {
 
     private static ArrayList<String> baseBag = new ArrayList<>();
+    private ArrayList<String> currentBag = new ArrayList<>();
 
     static {
         baseBag.add("LPiece");
@@ -52,13 +53,19 @@ public class RandNext {
     //REQUIRES: initNext not being previously run in current game instance
     //EFFECTS: initializes next four pieces for use in game
     public ArrayList<String> initNext() {
-        ArrayList<String> currentBag = new ArrayList<>();
         currentBag.add(getRandom());
         currentBag.add(getRandom());
         currentBag.add(getRandom());
         currentBag.add(getRandom());
         //TODO: send currentBag to be drawn by UI
         return currentBag;
+    }
+
+    public String nextPiece() {
+        String latest = currentBag.get(0);
+        currentBag.remove(0);
+        currentBag.add(getRandom());
+        return latest;
     }
 
 }

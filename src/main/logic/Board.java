@@ -55,11 +55,16 @@ public class Board {
         //boardPieces.replace("currentPiece", currentPiece)
     }
 
+    private void nextPiece() {
+        //currentPiece = new RandNext.nextPiece();
+        //boardPieces.replace("currentPiece", currentPiece)
+    }
+
     private void placeNextPiece(Animatable piece) {
         //String objName = "object" + Integer.toString(index);
         //boardPieces.put(objName, currentPiece)
         incrementIndex();
-        genPiece();
+        nextPiece();
     }
 
     //REQUIRES: board initialized
