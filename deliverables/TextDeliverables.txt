@@ -22,4 +22,4 @@ added Game class which will handle real-time game logic, added DrawState class w
 - Game responds to Enter and Escape keys which do stuff
 - Debugger: find currentState and see if problems are due to currentState being incorrectly assigned
 
-10/07/19: Deliverable 03 - added specifications to basically every method and added tests for Square
+10/07/19: Deliverable 03 - added specifications to basically every method and added tests for Square and State

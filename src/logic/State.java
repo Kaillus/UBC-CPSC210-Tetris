@@ -8,11 +8,6 @@ Debug: currentState
 
 package logic;
 
-import ui.DrawState;
-
-import java.util.Map;
-import java.util.HashMap;
-
 public class State {
 
     public enum States {
@@ -36,31 +31,31 @@ public class State {
 
     //REQUIRES: currentState initialized
     //EFFECTS: returns currentState
-    public static States getState() {
+    public States getState() {
         System.out.println("State is currently: " + currentState);
         return currentState;
     }
 
     //MODIFIES: this
     //EFFECTS: sets currentState to input state
-    public static void setState(States newState) {
+    public void setState(States newState) {
         currentState = newState;
         System.out.println("State is now: " + currentState);
     }
 
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
-    public static void switchState(States switchToState) {
+    public void switchState(States switchToState) {
         setState(switchToState);
         switch (currentState) {
             case MENU:
-                ui.DrawState.DrawMenu();
+                ui.DrawState.drawMenu();
                 //initState();
                 System.out.println("Drawing MENU");
                 break;
 
             case GAME:
-                ui.DrawState.DrawGame();
+                ui.DrawState.drawGame();
                 System.out.println("Drawing GAME");
                 break;
 

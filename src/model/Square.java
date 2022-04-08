@@ -21,27 +21,40 @@ public class Square {
     }
 
     //EFFECTS: returns true if square is empty and false if not
-    public static boolean isEmpty(Square square) {
-        return square.empty;
+    public boolean isEmpty() {
+        return this.empty;
     }
 
+    //MODIFIES: this
+    //EFFECTS: flips empty's boolean state
     public void switchEmpty() {
         this.empty = !this.empty;
     }
 
     //EFFECTS: returns input square's colour
-    public static String getColour(Square square) {
-        return square.colour;
+    public String getColour() {
+        return this.colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     //EFFECTS: returns input square's x
-    public static int getX(Square square) {
-        return square.x;
+    public int getX() {
+        return this.x;
     }
 
     //EFFECTS: returns input square's y
-    public static int getY(Square square) {
-        return square.y;
+    public int getY() {
+        return this.y;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets a Square's position on the grid
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     //EFFECTS: returns input square's ordered coordinate pair on the grid

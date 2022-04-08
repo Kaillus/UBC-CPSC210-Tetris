@@ -23,16 +23,18 @@ public class KeyInput extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
 
+        State temp = new State();
+
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_ENTER) {
-            if (State.getState() == MENU) {
-                State.switchState(GAME);
+            if (temp.getState() == MENU) {
+                temp.switchState(GAME);
             }
         }
 
         if (keyCode == KeyEvent.VK_ESCAPE) {
-            System.out.println("Exiting process via emergency escape, currentState was: " + State.getState());
+            System.out.println("Exiting process via emergency escape, currentState was: " + temp.getState());
             System.exit(0);
         }
 
