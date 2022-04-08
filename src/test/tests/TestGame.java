@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class TestGame {
 
-    private Game testGame;
+    /*private Game testGame;
 
     @BeforeEach
     private void setup() {
@@ -16,5 +16,5 @@ public class TestGame {
     @Test
     public void testBoardInit() {
         testGame.init();
-    }
+    }*/
 }

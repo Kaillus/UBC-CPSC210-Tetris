@@ -19,6 +19,7 @@ public class RandNext {
     private ArrayList<Piece> currentBag = new ArrayList<>();
     private Piece targetPiece;
     private int sevenSetCounter;
+    private Board board;
 
     static {
         baseBag.add("LPiece");
@@ -30,8 +31,9 @@ public class RandNext {
         baseBag.add("SPiece");
     }
 
-    public RandNext() {
+    public RandNext(Board board) {
         this.sevenSetCounter = 6;
+        this.board = board;
     }
 
     //MODIFIES: this
@@ -53,13 +55,13 @@ public class RandNext {
     public Piece generatePiece(String temp) {
         switch (temp) {
             case "LPiece":
-                targetPiece = new LPiece();
+                targetPiece = new LPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             case "JPiece":
-                targetPiece = new JPiece();
+                targetPiece = new JPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             case "TPiece":
-                targetPiece = new TPiece();
+                targetPiece = new TPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             default:
                 switchExtend(temp);
@@ -71,16 +73,16 @@ public class RandNext {
     private void switchExtend(String temp) {
         switch (temp) {
             case "IPiece":
-                targetPiece = new IPiece();
+                targetPiece = new IPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             case "OPiece":
-                targetPiece = new OPiece();
+                targetPiece = new OPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             case "ZPiece":
-                targetPiece = new ZPiece();
+                targetPiece = new ZPiece(board, board.getBoardWidth() / 2, 0);
                 break;
             default:
-                targetPiece = new SPiece();
+                targetPiece = new SPiece(board, board.getBoardWidth() / 2, 0);
                 break;
         }
     }

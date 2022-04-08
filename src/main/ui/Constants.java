@@ -9,7 +9,10 @@ package ui;
 import logic.TetrisProperties;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class Constants {
 

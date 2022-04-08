@@ -77,7 +77,7 @@ public class State extends DrawPack {
     }
 
     private void stateDrawGame() {
-        //shutdown();
+        shutdown();
         DrawState drawGame = new DrawGame();
         drawGame.init();
     }
