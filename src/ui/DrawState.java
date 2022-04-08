@@ -15,18 +15,37 @@ package ui;
 
 //import logic.State;
 
+import logic.KeyInput;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 
-public class DrawState {
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 
-    public static void DrawMenu() {
+//import java.awt.Color;
+//import java.awt.BorderLayout;
+//import java.awt.Dimension;
+
+/*public interface DrawState {
+    void update();
+    void draw();
+    void keyListening();
+}
+
+class DrawMenu implements DrawState {
+
+    @Override
+    public void update() {
+        //dab();
+    }
+
+    @Override
+    public void draw()  {
         JFrame frame = new JFrame("Not Tetris");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -50,11 +69,49 @@ public class DrawState {
         frame.setVisible(true);
     }
 
-    public static void DrawGame() {
+    @Override
+    public void keyListening() {
+        //KeyListener listener = new KeyListener();
 
-        JFrame frame = new JFrame("Not Tetris");
+    }
+}*/
+public class DrawState {
+
+    private static JFrame frame = new JFrame("Not Tetris");
+
+    public static void DrawMenu() {
+        //JFrame frame = new JFrame("Not Tetris");
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel panel = new JPanel();
 
+        String iconPath = "src/image/menu.png";
+        ImageIcon icon = new ImageIcon(iconPath);
+        JLabel iconLabel = new JLabel(icon);
+        frame.getContentPane().add(new JScrollPane(iconLabel));
+        iconLabel.setSize(250,163);
+        iconLabel.setLocation(250,100);
+        iconLabel.setOpaque(false);
+        panel.add(iconLabel);
+
+        frame.add(panel);
+        frame.setResizable(false);
+
+        KeyListener keyListener = new KeyInput();
+        frame.addKeyListener(keyListener);
+
+        frame.setFocusable(true);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+
+    public static void DrawGame() {
+        frame.removeAll();
+        frame.revalidate();
+        frame.repaint();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
 
         String iconPath = "src/image/TetrisLogo.png";
@@ -68,10 +125,12 @@ public class DrawState {
 
         frame.add(panel);
 
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setFocusable(true);
+        //frame.setResizable(false);
+        KeyListener keyListener = new KeyInput();
+        frame.addKeyListener(keyListener);
+        //frame.setFocusable(true);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
