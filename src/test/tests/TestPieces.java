@@ -4,15 +4,17 @@ import logic.Board;
 import model.Animatable;
 
 import model.pieces.*;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPieces {
 
     private Board testBoard;
 
-    @Before
+    @BeforeEach
     public void initTestBoard() {
         testBoard = new Board(6,6);
     }
@@ -94,7 +96,7 @@ public class TestPieces {
         System.out.println("Passed ZPiece test");
     }
 
-    @AfterClass
+    @AfterAll
     public static void testSuccess() {
         System.out.println("All seven pieces place on the board without issue");
     }

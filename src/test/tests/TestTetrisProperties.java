@@ -2,20 +2,22 @@ package tests;
 
 import logic.TetrisProperties;
 import logic.java.PropertiesMissingException;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestTetrisProperties {
 
     private String testPath = "test.properties";
 
-    @Before
+    @BeforeEach
     public void deleteTestFile() {
         File testFile = new File(testPath);
         if (testFile.isFile()) {
@@ -55,7 +57,7 @@ public class TestTetrisProperties {
         assertEquals(5, TetrisProperties.readFromProperties(testPath));
     }
 
-    @After
+    @AfterEach
     public void clearTestFile() {
         deleteTestFile();
     }

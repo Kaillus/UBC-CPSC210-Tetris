@@ -1,18 +1,18 @@
 package tests;
 
 import model.Square;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.*;
-
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSquare {
 
     private Square square;
 
-    @Before
+    @BeforeEach
     public void setup() {
         square = new Square("black",0,0);
     }
