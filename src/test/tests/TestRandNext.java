@@ -44,6 +44,7 @@ public class TestRandNext {
 
     @Test
     public void testVerifyBagSize() {
+        randNext.getSize();
         assertEquals(4, randNext.getSize());
     }
 

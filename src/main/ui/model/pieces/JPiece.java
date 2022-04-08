@@ -14,10 +14,8 @@ public class JPiece extends Piece {
     }
 
     public void setPos(int x, int y) {
-        Square one = new Square(Color.blue, x - 1, y);
-        Square two = new Square(Color.blue, x - 1, y + 1);
-        Square thr = new Square(Color.blue, x, y + 1);
-        Square fou = new Square(Color.blue, x + 1, y + 1);
+        xpos = x;
+        ypos = y;
         one.setLocation(x - Constants.blockSize, y);
         two.setLocation(x - Constants.blockSize, y + Constants.blockSize);
         thr.setLocation(x, y + Constants.blockSize);

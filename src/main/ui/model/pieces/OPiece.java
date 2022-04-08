@@ -13,6 +13,8 @@ public class OPiece extends Piece {
     }
 
     public void setPos(int x, int y) {
+        xpos = x;
+        ypos = y;
         one.setLocation(x, y);
         two.setLocation(x, y + Constants.blockSize);
         thr.setLocation(x - Constants.blockSize, y);

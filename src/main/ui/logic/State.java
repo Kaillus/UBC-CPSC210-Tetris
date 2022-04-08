@@ -52,8 +52,8 @@ public class State extends DrawPack {
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
     public void switchState(States switchToState) {
-        setState(switchToState);
         if (currentState != switchToState) {
+            setState(switchToState);
             switch (currentState) {
                 case MENU:
                     stateDrawMenu();

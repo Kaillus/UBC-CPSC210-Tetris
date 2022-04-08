@@ -7,6 +7,7 @@ Generates next pieces for use in game
 
 package model;
 
+import ui.Constants;
 import ui.logic.Board;
 import ui.model.pieces.*;
 
@@ -69,13 +70,13 @@ public class RandNext {
     public Piece generatePiece(String temp) {
         switch (temp) {
             case "LPiece":
-                targetPiece = new LPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new LPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             case "JPiece":
-                targetPiece = new JPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new JPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             case "TPiece":
-                targetPiece = new TPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new TPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             default:
                 switchExtend(temp);
@@ -87,16 +88,16 @@ public class RandNext {
     private void switchExtend(String temp) {
         switch (temp) {
             case "IPiece":
-                targetPiece = new IPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new IPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             case "OPiece":
-                targetPiece = new OPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new OPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             case "ZPiece":
-                targetPiece = new ZPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new ZPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
             default:
-                targetPiece = new SPiece(board, board.getBoardWidth() / 2, 0);
+                targetPiece = new SPiece(board, (board.getBoardWidth() / 2) * Constants.blockSize, 0);
                 break;
         }
     }
