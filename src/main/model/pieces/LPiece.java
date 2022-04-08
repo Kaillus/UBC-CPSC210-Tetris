@@ -1,10 +1,10 @@
 package model.pieces;
 
 import logic.Board;
-import model.Animatables;
+import model.Animatable;
 import model.Square;
 
-public class LPiece implements Animatables {
+public class LPiece implements Animatable {
 
     private Square one;
     private Square two;

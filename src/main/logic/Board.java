@@ -1,10 +1,11 @@
 package logic;
 
-import model.Animatables;
+import model.Animatable;
 import model.Square;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Board {
 
@@ -15,7 +16,9 @@ public class Board {
 
     private String[] colourKey = {"black","red","green","blue","orange","purple","cyan","yellow"};
 
-    private HashMap<String, ArrayList<Animatables>> boardPieces;
+    private Map<String, Animatable> boardPieces;
+    private Animatable currentPiece;
+    private int index;
 
     //MODIFIES: this
     //EFFECTS: builds a new Board
@@ -24,16 +27,21 @@ public class Board {
         this.boardWidth = width;
         this.gameBoard = new int[this.boardHeight][this.boardWidth];
         this.boardPieces = new HashMap<>();
+        this.index = 1;
     }
 
     //EFFECTS: converts a Square's colour to a number for use in the Board
     private int colourKeyIndex(String string) {
         for (int i = 0; i < colourKey.length; i++) {
-            if (colourKey[i] == string) {
+            if (colourKey[i].equals(string)) {
                 return i;
             }
         }
         return 0;
+    }
+
+    private void iterateIndex() {
+        index = index + 1;
     }
 
     //MODIFIES: this
@@ -42,7 +50,16 @@ public class Board {
         this.gameBoard[square.getY()][square.getX()] = colourKeyIndex(square.getColour());
     }
 
-    public void placeNextPiece(Animatables piece) {
+    private void genPiece() {
+        //currentPiece = new RandNext.generatePiece();
+        //boardPieces.replace("currentPiece", currentPiece)
+    }
+
+    private void placeNextPiece(Animatable piece) {
+        //String objName = "object" + Integer.toString(index);
+        //boardPieces.put(objName, currentPiece)
+        iterateIndex();
+        genPiece();
     }
 
     //REQUIRES: board initialized
