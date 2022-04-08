@@ -1,17 +1,19 @@
 package tests;
 
 import logic.Board;
-import model.Animatable;
+import model.pieces.Piece;
 
 import model.pieces.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPieces {
-/*
+
     private Board testBoard;
 
     @BeforeEach
@@ -21,78 +23,71 @@ public class TestPieces {
 
     @Test
     public void placeJ() {
-        Animatable j = new JPiece();
-        j.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(2, 0), "blue");
-        assertEquals(testBoard.getColourByPos(2, 1), "blue");
-        assertEquals(testBoard.getColourByPos(3, 1), "blue");
-        assertEquals(testBoard.getColourByPos(4, 1), "blue");
+        Piece j = new JPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(2, 0), Color.blue);
+        assertEquals(testBoard.getColourByPos(2, 1), Color.blue);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.blue);
+        assertEquals(testBoard.getColourByPos(4, 1), Color.blue);
         System.out.println("Passed JPiece test");
     }
 
     @Test
     public void placeI() {
-        Animatable i = new IPiece();
-        i.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(3, 0), "cyan");
-        assertEquals(testBoard.getColourByPos(3, 1), "cyan");
-        assertEquals(testBoard.getColourByPos(3, 2), "cyan");
-        assertEquals(testBoard.getColourByPos(3, 3), "cyan");
+        Piece i = new IPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(3, 0), Color.cyan);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.cyan);
+        assertEquals(testBoard.getColourByPos(3, 2), Color.cyan);
+        assertEquals(testBoard.getColourByPos(3, 3), Color.cyan);
         System.out.println("Passed IPiece test");
     }
 
     @Test
     public void placeL() {
-        Animatable l = new LPiece();
-        l.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(4, 0), "orange");
-        assertEquals(testBoard.getColourByPos(4, 1), "orange");
-        assertEquals(testBoard.getColourByPos(3, 1), "orange");
-        assertEquals(testBoard.getColourByPos(2, 1), "orange");
+        Piece l = new LPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(4, 0), Color.orange);
+        assertEquals(testBoard.getColourByPos(4, 1), Color.orange);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.orange);
+        assertEquals(testBoard.getColourByPos(2, 1), Color.orange);
         System.out.println("Passed LPiece test");
     }
 
     @Test
     public void placeT() {
-        Animatable t = new TPiece();
-        t.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(3, 0), "purple");
-        assertEquals(testBoard.getColourByPos(4, 1), "purple");
-        assertEquals(testBoard.getColourByPos(3, 1), "purple");
-        assertEquals(testBoard.getColourByPos(2, 1), "purple");
+        Piece t = new TPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(3, 0), Color.magenta);
+        assertEquals(testBoard.getColourByPos(4, 1), Color.magenta);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.magenta);
+        assertEquals(testBoard.getColourByPos(2, 1), Color.magenta);
         System.out.println("Passed TPiece test");
     }
 
     @Test
     public void placeO() {
-        Animatable o = new OPiece();
-        o.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(3, 0), "yellow");
-        assertEquals(testBoard.getColourByPos(3, 1), "yellow");
-        assertEquals(testBoard.getColourByPos(2, 0), "yellow");
-        assertEquals(testBoard.getColourByPos(2, 1), "yellow");
+        Piece o = new OPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(3, 0), Color.yellow);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.yellow);
+        assertEquals(testBoard.getColourByPos(2, 0), Color.yellow);
+        assertEquals(testBoard.getColourByPos(2, 1), Color.yellow);
         System.out.println("Passed OPiece test");
     }
 
     @Test
     public void placeS() {
-        Animatable s = new SPiece();
-        s.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(4, 0), "green");
-        assertEquals(testBoard.getColourByPos(3, 0), "green");
-        assertEquals(testBoard.getColourByPos(3, 1), "green");
-        assertEquals(testBoard.getColourByPos(2, 1), "green");
+        Piece s = new SPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(4, 0), Color.green);
+        assertEquals(testBoard.getColourByPos(3, 0), Color.green);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.green);
+        assertEquals(testBoard.getColourByPos(2, 1), Color.green);
         System.out.println("Passed SPiece test");
     }
 
     @Test
     public void placeZ() {
-        Animatable z = new ZPiece();
-        z.draw(testBoard,3, 0);
-        assertEquals(testBoard.getColourByPos(2, 0), "red");
-        assertEquals(testBoard.getColourByPos(3, 0), "red");
-        assertEquals(testBoard.getColourByPos(3, 1), "red");
-        assertEquals(testBoard.getColourByPos(4, 1), "red");
+        Piece z = new ZPiece(testBoard,3, 0);
+        assertEquals(testBoard.getColourByPos(2, 0), Color.red);
+        assertEquals(testBoard.getColourByPos(3, 0), Color.red);
+        assertEquals(testBoard.getColourByPos(3, 1), Color.red);
+        assertEquals(testBoard.getColourByPos(4, 1), Color.red);
         System.out.println("Passed ZPiece test");
     }
 
@@ -100,7 +95,5 @@ public class TestPieces {
     public static void testSuccess() {
         System.out.println("All seven pieces place on the board without issue");
     }
-
-    */
 
 }

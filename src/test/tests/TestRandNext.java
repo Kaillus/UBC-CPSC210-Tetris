@@ -1,7 +1,7 @@
 package tests;
 
+import logic.Board;
 import logic.RandNext;
-import model.Animatable;
 import model.pieces.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,9 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestRandNext {
-/*
-    private Animatable testObject;
-    private RandNext randNext = new RandNext();
+
+    private Board board = new Board(6,6);
+    private Piece testObject;
+    private RandNext randNext = new RandNext(board);
 
     @Test
     public void testSelect() {
@@ -47,17 +48,17 @@ public class TestRandNext {
         randNext.initNext();
         assertEquals(4, randNext.getSize());
         testObject = randNext.nextPiece();
-        assertTrue(testObject instanceof Animatable);
+        assertTrue(testObject instanceof Piece);
         assertEquals(4, randNext.getSize());
-    }*/
+    }
 
     /*@Test
     public void testGetRandom() {
-        ArrayList<Animatable> tempBag = new ArrayList<>();
+        ArrayList<Piece> tempBag = new ArrayList<>();
         testObject = randNext.getRandom();
         Class cls = testObject.getClass();
         tempBag.add(testObject);
-        for (Animatable a : tempBag) {
+        for (Piece a : tempBag) {
             if (a instanceof cls)
         }
     }*/

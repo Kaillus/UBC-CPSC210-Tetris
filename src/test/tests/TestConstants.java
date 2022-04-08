@@ -1,5 +1,14 @@
 package tests;
 
+import logic.TetrisProperties;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import ui.Constants;
+
+import javax.swing.*;
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -7,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestConstants {
 
-    /*private String testPath = "test.properties";
-    Constants testConstants = new Constants();
+    private String testPath = "test.properties";
+    Constants testConstants = Constants.getInstance();
 
     @BeforeEach
     public void deleteTestFile() {
@@ -57,6 +66,6 @@ public class TestConstants {
     @AfterEach
     public void deleteTestFile2() {
         deleteTestFile();
-    }*/
+    }
 
 }

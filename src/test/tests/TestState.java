@@ -1,11 +1,18 @@
 package tests;
 
+import logic.java.UnknownStateException;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import ui.State;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static ui.State.States.*;
 
 public class TestState {
-
-    /*@BeforeEach
+/*
+    @BeforeEach
     public void setup() {
         //State.getInstance().setState(previousState);
     }
@@ -40,6 +47,6 @@ public class TestState {
     @AfterAll
     public void fix() {
         previousState = State.getInstance().getState();
-    }*/
-
+    }
+*/
 }

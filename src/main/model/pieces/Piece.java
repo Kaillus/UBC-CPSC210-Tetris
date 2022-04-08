@@ -31,6 +31,7 @@ public abstract class Piece extends PieceSubject implements Animatable, Paintabl
         thr = new Square(colour);
         fou = new Square(colour);
         this.board = board;
+        this.observers.add(board);
     }
 
     @Override
@@ -49,6 +50,7 @@ public abstract class Piece extends PieceSubject implements Animatable, Paintabl
         fou.draw(brush);
     }
 
+
     protected void setOne(Color colour, int x, int y) {
         this.one = new Square(colour,x,y);
     }
@@ -66,22 +68,25 @@ public abstract class Piece extends PieceSubject implements Animatable, Paintabl
     }
 
     public void moveLeft() {
-        //notifyObservers();
+        notifyObservers(one, 2);
+        notifyObservers(two, 2);
+        notifyObservers(thr, 2);
+        notifyObservers(fou, 2);
     }
 
     public void moveRight() {
-        //notifyObservers();
+        notifyObservers(one, 3);
+        notifyObservers(two, 3);
+        notifyObservers(thr, 3);
+        notifyObservers(fou, 3);
     }
 
     public void moveDown() {
-        one.setPosition(one.getSquareX(), one.getSquareY() + 1);
-        two.setPosition(two.getSquareX(), two.getSquareY() + 1);
-        thr.setPosition(thr.getSquareX(), thr.getSquareY() + 1);
-        fou.setPosition(fou.getSquareX(), fou.getSquareY() + 1);
         notifyObservers(one, 1);
         notifyObservers(two, 1);
         notifyObservers(thr, 1);
         notifyObservers(fou, 1);
+        System.out.println("notified observers");
     }
 
     public ArrayList<ArrayList<Integer>> getPos() {
