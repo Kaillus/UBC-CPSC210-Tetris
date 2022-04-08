@@ -1,5 +1,7 @@
 package model.paint;
 
+import ui.model.SmartRectangle;
+
 import java.awt.*;
 
 public class Square extends SmartRectangle {

@@ -7,10 +7,9 @@ Generates next pieces for use in game
 
 package logic;
 
-import model.Animatable;
 import model.pieces.Piece;
 import model.pieces.*;
-import ui.Board;
+import ui.logic.Board;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +45,7 @@ public class RandNext {
     //MODIFIES: this
     //EFFECTS: the bag is a set of 7 pieces. getRandom() shuffles the bag and then pulls out each piece so there are
     //         no repeating pieces and then shuffles the bag again once all pieces have been selected once
-    public Piece getRandom() {
+    private Piece getRandom() {
         if (sevenSetCounter == 6) {
             Collections.shuffle(baseBag);
             sevenSetCounter = 0;

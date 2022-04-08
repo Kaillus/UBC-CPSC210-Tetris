@@ -8,6 +8,10 @@ import static ui.Constants.UIFrame;
 
 public class DrawOptions implements DrawState {
 
+    public DrawOptions() {
+        draw();
+    }
+
     @Override
     public void update() {
         // no updating on options screen
@@ -41,11 +45,6 @@ public class DrawOptions implements DrawState {
         slider.setPaintLabels(true);
         slider.setSnapToTicks(true);
         return slider;
-    }
-
-    @Override
-    public void init() {
-        draw();
     }
 
 

@@ -4,14 +4,16 @@ Handles actions that occur based on user key input
 
  */
 
-package ui;
+package ui.logic;
+
+import ui.DrawOptions;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import static ui.State.States.GAME;
-//import static ui.State.States.PAUSE;
-//import static ui.State.States.MENU;
+import static ui.logic.State.States.GAME;
+//import static ui.logic.State.States.PAUSE;
+//import static ui.logic.State.States.MENU;
 
 public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
 
@@ -76,44 +78,7 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
 
         if (keyCode == KeyEvent.VK_BACK_SPACE) {
             DrawOptions drawOptions = new DrawOptions();
-            drawOptions.draw();
         }
-
-    }
-
-    private void keyPressedInGame(KeyEvent e) {
-
-        int keyCode = e.getKeyCode();
-
-        if (keyCode == KeyEvent.VK_X) {
-            //Game.saveBlock();
-        }
-
-        if (keyCode == KeyEvent.VK_Z) {
-            //Game.rotatePiece(piece, 1)
-        }
-
-        if (keyCode == KeyEvent.VK_C) {
-            //Game.rotatePiece(piece, 2)
-        }
-
-        if (keyCode == KeyEvent.VK_DOWN) {
-            //Game.movePiece(piece?, 1)
-        }
-
-        if (keyCode == KeyEvent.VK_LEFT) {
-            //Game.movePiece(piece?, 2)
-        }
-
-        if (keyCode == KeyEvent.VK_RIGHT) {
-            //Game.movePiece(piece?, 3)
-        }
-
-        if (keyCode == KeyEvent.VK_SPACE) {
-            //Game.fastFallPiece(piece)
-        }
-
-
 
     }
 

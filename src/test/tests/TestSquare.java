@@ -23,6 +23,7 @@ public class TestSquare {
     public void testColourChange() {
         assertTrue(square.isEmpty());
         System.out.println(square.isEmpty());
+        assertEquals(Color.black, square.getColour());
         square.setColour(Color.red);
         assertFalse(square.isEmpty());
         System.out.println(square.isEmpty());

@@ -1,4 +1,4 @@
-package ui;
+package ui.logic;
 
 //shamelessly quoting from: http://zetcode.com/articles/javareadwebpage/
 

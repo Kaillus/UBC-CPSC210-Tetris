@@ -1,7 +1,7 @@
 package model.pieces;
 
 import model.paint.Square;
-import ui.Board;
+import ui.logic.Board;
 import ui.Constants;
 
 import java.awt.*;

@@ -2,14 +2,12 @@ package model.pieces;
 
 import model.Animatable;
 import model.paint.Square;
-import ui.Board;
+import ui.logic.Board;
 import ui.Constants;
-import ui.PieceSubject;
 
 import java.awt.*;
-import java.util.ArrayList;
 
-public abstract class Piece extends PieceSubject implements Animatable {
+public abstract class Piece implements Animatable {
 
     protected Square one;
     protected Square two;
@@ -32,7 +30,6 @@ public abstract class Piece extends PieceSubject implements Animatable {
         fou = new Square(colour);
         fou.setSize(Constants.blockSize, Constants.blockSize);
         this.board = board;
-        this.observers.add(board);
     }
 
     public void draw(Graphics2D brush) {
@@ -92,10 +89,10 @@ public abstract class Piece extends PieceSubject implements Animatable {
 
     public boolean moveRight() {
         System.out.println("right");
-        int newx1 = (int) one.getX() + Constants.getInstance().blockSize;
-        int newx2 = (int) two.getX() + Constants.getInstance().blockSize;
-        int newx3 = (int) thr.getX() + Constants.getInstance().blockSize;
-        int newx4 = (int) fou.getX() + Constants.getInstance().blockSize;
+        int newx1 = (int) one.getX() + Constants.blockSize;
+        int newx2 = (int) two.getX() + Constants.blockSize;
+        int newx3 = (int) thr.getX() + Constants.blockSize;
+        int newx4 = (int) fou.getX() + Constants.blockSize;
         boolean block1 = board.canMove(newx1 / Constants.blockSize, (int) one.getY() / Constants.blockSize);
         boolean block2 = board.canMove(newx2 / Constants.blockSize, (int) two.getY() / Constants.blockSize);
         boolean block3 = board.canMove(newx3 / Constants.blockSize, (int) thr.getY() / Constants.blockSize);
@@ -113,10 +110,10 @@ public abstract class Piece extends PieceSubject implements Animatable {
     }
 
     public boolean moveDown() {
-        int newy1 = (int) one.getY() + Constants.getInstance().blockSize;
-        int newy2 = (int) two.getY() + Constants.getInstance().blockSize;
-        int newy3 = (int) thr.getY() + Constants.getInstance().blockSize;
-        int newy4 = (int) fou.getY() + Constants.getInstance().blockSize;
+        int newy1 = (int) one.getY() + Constants.blockSize;
+        int newy2 = (int) two.getY() + Constants.blockSize;
+        int newy3 = (int) thr.getY() + Constants.blockSize;
+        int newy4 = (int) fou.getY() + Constants.blockSize;
 
         boolean block1 = board.canMove((int) one.getY() / Constants.blockSize, newy1 / Constants.blockSize);
         boolean block2 = board.canMove((int) two.getY() / Constants.blockSize, newy2 / Constants.blockSize);
