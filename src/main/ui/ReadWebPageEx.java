@@ -13,7 +13,6 @@ import org.json.*;
 public class ReadWebPageEx {
 
     private static String getStuff() {
-        //String theURL = "https://www.ugrad.cs.ubc.ca/~cs210/2018w1/welcomemsg.html"; //this can point to any URL
         String weatherQuery = "http://api.openweathermap.org/data/2.5/weather?id=5911606&APPID=";
         String apiKey = "f509e27e7964150e48e270515be09715";
         return weatherQuery + apiKey;
@@ -27,7 +26,6 @@ public class ReadWebPageEx {
         while ((line = rd.read()) != -1) {
 
             sb.append((char) line);
-            //sb.append(System.lineSeparator());
         }
 
         return sb.toString();
@@ -57,14 +55,18 @@ public class ReadWebPageEx {
             weather = "Cloudy";
         } else if (weather.equals("Thunderstorm")) {
             weather = "Thunderstorming";
+        } else if (weather.equals("Drizzle")) {
+            weather = "Drizzling";
         } else if (weather.equals("Clear")) {
             //
         } else if (weather.substring(string.length() - 1).equals("e")) {
             weather = weather.replaceAll("e$", "y");
+        } else if (weather.substring(string.length() - 1).equals("g")) {
+            weather = weather.replaceAll("g$", "gy");
         } else {
             weather = weather + "y";
         }
-
+        
         return weather.toLowerCase();
     }
 
@@ -76,12 +78,12 @@ public class ReadWebPageEx {
             String weather = processString(arr.getJSONObject(0).getString("main"));
 
             String string = "Play Tetris while it's ";
-            String string2 = " outside";
+            String string2 = " outside!";
             return string + weather + string2;
         } catch (IOException e) {
-            return "IOTetris";
+            return "Tetris: IOException";
         } catch (JSONException j) {
-            return "JSONTetris";
+            return "Tetris: JSONException";
         }
 
     }
