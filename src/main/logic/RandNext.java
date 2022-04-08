@@ -5,7 +5,7 @@ Generates next pieces for use in game
  */
 
 
-package model;
+package logic;
 
 import ui.Constants;
 import ui.logic.Board;

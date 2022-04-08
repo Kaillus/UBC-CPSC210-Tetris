@@ -8,7 +8,7 @@ File handling code itself not written by me, only adapted to fit my project setu
 
 */
 
-package model;
+package logic;
 
 import java.io.*;
 import java.util.Properties;
