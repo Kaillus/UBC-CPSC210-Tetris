@@ -52,3 +52,8 @@ reverted to the previous state. Finally was added which prints the final state a
 28/07/19: Deliverable 08 -
 
 - Added hashmap system (not functional) to manage pieces that are currently present on the board
+
+31/07/19 - Deliverable 09 - refactoring all previously done,
+
+- COHESION: Kind of bad cohesion in Board, may want to refactor into Game or something
+- COUPLING: Lots of semantic coupling around the pieces classes (although they must be the same)
