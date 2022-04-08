@@ -49,15 +49,4 @@ public class TestState {
 
     }
 
-    @Test
-    public void testMissingFile() {
-        //TetrisProperties.readFromProperties("fail.txt");
-        try {
-            TetrisProperties.readFromProperties("fail.txt");
-            fail("exception was not well-implemented");
-        } catch (PropertiesMissingException e) {
-            //
-        }
-    }
-
 }
