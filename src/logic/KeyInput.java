@@ -16,6 +16,10 @@ import static logic.State.States.GAME;
 
 public class KeyInput extends KeyAdapter {
 
+    //MODIFIES: State
+    //EFFECTS: Handles key input
+    //         Enter at MENU advances game to state GAME
+    //         Escape at any state closes the window
     @Override
     public void keyPressed(KeyEvent e) {
 

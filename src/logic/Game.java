@@ -30,7 +30,7 @@ public class Game {
     */
 
 
-
+    //EFFECTS: Iterate through given row in board and return true if no empty squares exist, false if otherwise
     // iterate through only one line at y coordinate
     /*public boolean checkForLineFull(int y) {
             for (int x = 0; x <= board.boardWidth; x++) {
