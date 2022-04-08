@@ -14,9 +14,11 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class TestTetrisProperties {
 
     private String testPath = "test.properties";
+    private TetrisProperties prop;
 
     @BeforeEach
     public void deleteTestFile() {
+        prop = new TetrisProperties();
         File testFile = new File(testPath);
         if (testFile.isFile()) {
             if (testFile.delete()) {
@@ -29,9 +31,8 @@ public class TestTetrisProperties {
 
     @Test
     public void testFirstRead() {
-        //TetrisProperties.readFromProperties("fail.txt");
         try {
-            TetrisProperties.readFromProperties("text.txt");
+            prop.readFromProperties("text.txt");
             fail("exception was not well-implemented");
         } catch (IOException e) {
             //
@@ -41,10 +42,10 @@ public class TestTetrisProperties {
     @Test
     public void testFirstWrite() {
         try {
-            TetrisProperties.writeToProperties(5, testPath);
+            prop.writeToProperties(5, testPath);
             File testFile = new File(testPath);
             assertTrue(testFile.isFile());
-            assertEquals(5, TetrisProperties.readFromProperties(testPath));
+            assertEquals(5, prop.readFromProperties(testPath));
         } catch (IOException e) {
             fail("IOException was thrown");
         }
@@ -55,10 +56,10 @@ public class TestTetrisProperties {
     @Test
     public void testMultipleWrite() {
         try {
-            TetrisProperties.writeToProperties(8, testPath);
-            TetrisProperties.writeToProperties(54, testPath);
-            TetrisProperties.writeToProperties(5, testPath);
-            assertEquals(5, TetrisProperties.readFromProperties(testPath));
+            prop.writeToProperties(8, testPath);
+            prop.writeToProperties(54, testPath);
+            prop.writeToProperties(5, testPath);
+            assertEquals(5, prop.readFromProperties(testPath));
         } catch (IOException e) {
             fail("IOException was thrown");
         }

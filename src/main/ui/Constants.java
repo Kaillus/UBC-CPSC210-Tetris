@@ -27,6 +27,7 @@ public final class Constants {
     public static final int boardWidth = 10;
 
     private static final Constants INSTANCE = new Constants();
+    private TetrisProperties prop;
 
     private Constants() {
     }
@@ -38,7 +39,7 @@ public final class Constants {
     //MODIFIES: this
     //EFFECTS: initializes global constants and default values
     public void initConstants(String configPath) {
-
+        prop = new TetrisProperties();
         KeyListener keyListener = new KeyInput();
         UIFrame.addKeyListener(keyListener);
 
@@ -47,10 +48,10 @@ public final class Constants {
         File properties = new File(configPath);
         try {
             if (properties.isFile()) {
-                gameSpeed = TetrisProperties.readFromProperties(configPath);
+                gameSpeed = prop.readFromProperties(configPath);
             } else {
                 gameSpeed = initialSpeed;
-                TetrisProperties.writeToProperties(initialSpeed, configPath);
+                prop.writeToProperties(initialSpeed, configPath);
             }
         } catch (IOException e) {
             gameSpeed = 1;
