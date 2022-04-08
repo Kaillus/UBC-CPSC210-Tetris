@@ -11,7 +11,7 @@ import java.io.File;
 
 public class Constants {
 
-    public static JFrame TetrisFrame = new JFrame("Not Tetris");
+    public static JFrame UIFrame = new JFrame("Not Tetris");
 
     public static int gameSpeed;
 

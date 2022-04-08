@@ -60,14 +60,14 @@ public class Board {
     //REQUIRES: must be the first piece-generating method run
     //MODIFIES: this
     //EFFECTS: initializes the first piece and the upcoming pieces
-    private void genPiece() {
+    public void genPiece() {
         randNext.initNext();
         nextPiece();
     }
 
     //MODIFIES: this
     //EFFECTS: gets the next piece from the upcoming pieces
-    private void nextPiece() {
+    public void nextPiece() {
         currentPiece = randNext.nextPiece();
         boardPieces.replace("currentPiece", currentPiece);
     }
@@ -76,7 +76,7 @@ public class Board {
     //EFFECTS: if saved is true, switches the currentPiece with (and places) the input piece. else, moves the current
     //         piece to a new spot in the boardPieces hashmap (changing its key to object#) and
     //         increments the index + generates next piece
-    private void placeNextPiece(Animatable piece, boolean saved) {
+    public void placeNextPiece(Animatable piece, boolean saved) {
         if (!saved) {
             String objName = "object" + Integer.toString(index);
             boardPieces.put(objName, currentPiece);

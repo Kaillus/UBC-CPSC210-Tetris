@@ -24,4 +24,11 @@ public class TestBoard {
         assertEquals(testBoard.getColourByPos(2, 3), "red");
     }
 
+    @Test
+    public void getWrongColour() {
+        Square testSquare = new Square("gray",3,3);
+        testBoard.placeOnBoard(testSquare);
+        assertEquals("black", testBoard.getColourByPos(3,3));
+    }
+
 }

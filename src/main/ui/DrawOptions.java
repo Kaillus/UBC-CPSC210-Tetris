@@ -5,7 +5,7 @@ import logic.TetrisProperties;
 
 import javax.swing.*;
 
-import static logic.Constants.TetrisFrame;
+import static logic.Constants.UIFrame;
 
 public class DrawOptions implements DrawState {
 
@@ -18,7 +18,7 @@ public class DrawOptions implements DrawState {
     public void draw()  {
         JSlider slider = drawSlider();
         int optionPanel = JOptionPane.showOptionDialog(
-                TetrisFrame,
+                UIFrame,
                 slider,
                 "Set game speed",
                 JOptionPane.OK_CANCEL_OPTION,
