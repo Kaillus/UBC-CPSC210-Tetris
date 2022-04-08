@@ -85,7 +85,7 @@ public class KeyInput extends KeyAdapter {
             Game.getInstance().getGameBoard().repaintBoard();
         }
 
-        if (keyCode == KeyEvent.VK_C) {
+        if ((keyCode == KeyEvent.VK_C) || (keyCode == KeyEvent.VK_UP)) {
             Game.getInstance().getGameBoard().getProxy().turnRight();
             Game.getInstance().getGameBoard().repaintBoard();
         }

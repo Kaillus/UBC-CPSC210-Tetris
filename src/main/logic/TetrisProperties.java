@@ -21,22 +21,20 @@ public class TetrisProperties {
     //         if file creation fails, throws IOException
     public static void writeToProperties(int i, String p) throws IOException {
 
-        try (OutputStream output = new FileOutputStream(p)) {
+        OutputStream output = new FileOutputStream(p);
 
-            Properties prop = new Properties();
+        Properties prop = new Properties();
 
-            // set the properties value
-            prop.setProperty("gameSpeed", Integer.toString(i));
+        // set the properties value
+        prop.setProperty("gameSpeed", Integer.toString(i));
 
-            // save properties to project root folder
-            prop.store(output, null);
+        // save properties to project root folder
+        prop.store(output, null);
 
-            System.out.println(prop);
+        System.out.println(prop);
 
-        } catch (IOException io) {
-            System.out.println("Failed writing to properties file at " + p);
-            io.printStackTrace();
-        }
+        output.close();
+
 
     }
 
@@ -50,22 +48,17 @@ public class TetrisProperties {
             throw new IOException();
         }
 
+        InputStream input = new FileInputStream(p);
+        Properties prop = new Properties();
 
-        try (InputStream input = new FileInputStream(p)) {
+        // load a properties file
+        prop.load(input);
 
-            Properties prop = new Properties();
+        // get the property value and print it out
+        input.close();
 
-            // load a properties file
-            prop.load(input);
+        return Integer.parseInt(prop.getProperty("gameSpeed"));
 
-            // get the property value and print it out
-            return Integer.parseInt(prop.getProperty("gameSpeed"));
-
-        } catch (IOException ex) {
-            System.out.println("Failed reading of properties file at " + p);
-            ex.printStackTrace();
-            return 1;
-        }
     }
 
 
