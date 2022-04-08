@@ -1,8 +1,7 @@
 package logic;
 
-import model.Animatable;
 import model.Square;
-import logic.RandNext;
+import model.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +14,11 @@ public class Board {
 
     private int[][] gameBoard;
 
-    private String[] colourKey = {"black","red","green","blue","orange","purple","cyan","yellow"};
+    private String[] colourKey = {"black", "red", "green", "blue", "orange", "purple", "cyan", "yellow"};
 
-    private Map<String, Animatable> boardPieces;
-    private Animatable currentPiece;
-    private Animatable savedPiece;
+    private Map<String, Piece> boardPieces;
+    private Piece currentPiece;
+    private Piece savedPiece;
     private int index;
     private RandNext randNext = new RandNext();
 
@@ -35,6 +34,18 @@ public class Board {
         this.index = 1;
     }
 
+    public Piece getCurrentPiece() {
+        return currentPiece;
+    }
+
+    public int getBoardHeight() {
+        return this.boardHeight;
+    }
+
+    public int getBoardWidth() {
+        return this.boardWidth;
+    }
+
     //EFFECTS: converts a Square's colour to a number for use in the Board
     private int colourKeyIndex(String string) {
         for (int i = 0; i < colourKey.length; i++) {
@@ -43,6 +54,71 @@ public class Board {
             }
         }
         return 0;
+    }
+
+    //REQUIRES: board initialized
+    //EFFECTS: returns colour located at input x, y
+    public String getColourByPos(int x, int y) {
+        return colourKey[gameBoard[y][x]];
+    }
+
+    private boolean isFree(ArrayList<ArrayList<Integer>> coords, int x, int y) {
+        ArrayList<Integer> tempCoords = new ArrayList<>();
+        tempCoords.add(x);
+        tempCoords.add(y);
+        for (ArrayList<Integer> i : coords) {
+            //if (!(getColourByPos(x, y).equals("black")) || (!coords.contains([x,y])));
+            if (!((i == tempCoords) || (getColourByPos(x, y).equals("black")))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isValid(int x, int y) {
+        return (x < boardWidth && y < boardHeight);
+    }
+
+    private boolean loopCheck(ArrayList<ArrayList<Integer>> coords, int newX, int newY) {
+        boolean check = false;
+        for (ArrayList<Integer> i : coords) {
+            boolean nfree = !isFree(coords, i.get(0) + newX, (i.get(1)) + newY);
+            boolean nvalid = !isValid(i.get(0) + newX, (i.get(1)) + newY);
+            check = nfree && nvalid;
+        }
+        return check;
+    }
+
+    private boolean canMoveDown(ArrayList<ArrayList<Integer>> curCoords) {
+        return loopCheck(curCoords,0,1);
+    }
+
+    private boolean canMoveLeft(ArrayList<ArrayList<Integer>> curCoords) {
+        return loopCheck(curCoords,-1,0);
+    }
+
+    private boolean canMoveRight(ArrayList<ArrayList<Integer>> curCoords) {
+        return loopCheck(curCoords,1,0);
+    }
+
+    //MR. TA: TRUST ME IT WORKS
+    private boolean canMove(Piece piece, int dir) {
+        ArrayList<ArrayList<Integer>> curCoords = piece.getPos();
+        boolean movable = false;
+        switch (dir) {
+            case 1: //DOWN
+                movable = canMoveDown(curCoords);
+                break;
+            case 2: //LEFT
+                movable = canMoveLeft(curCoords);
+                break;
+            case 3: //RIGHT
+                movable = canMoveRight(curCoords);
+                break;
+            default:
+                break;
+        }
+        return movable;
     }
 
     //MODIFIES: this
@@ -67,7 +143,7 @@ public class Board {
 
     //MODIFIES: this
     //EFFECTS: gets the next piece from the upcoming pieces
-    public void nextPiece() {
+    private void nextPiece() {
         currentPiece = randNext.nextPiece();
         boardPieces.replace("currentPiece", currentPiece);
     }
@@ -76,7 +152,7 @@ public class Board {
     //EFFECTS: if saved is true, switches the currentPiece with (and places) the input piece. else, moves the current
     //         piece to a new spot in the boardPieces hashmap (changing its key to object#) and
     //         increments the index + generates next piece
-    public void placeNextPiece(Animatable piece, boolean saved) {
+    private void placeNextPiece(Piece piece, boolean saved) {
         if (!saved) {
             String objName = "object" + Integer.toString(index);
             boardPieces.put(objName, currentPiece);
@@ -84,6 +160,14 @@ public class Board {
             nextPiece();
         } else {
             boardPieces.replace("currentPiece", piece);
+        }
+    }
+
+    public void updatePiece(Piece piece) {
+        if (canMove(piece, 1)) {
+            piece.moveDown();
+        } else {
+            nextPiece();
         }
     }
 
@@ -95,17 +179,11 @@ public class Board {
             savedPiece = boardPieces.get("currentPiece");
             nextPiece();
         } else {
-            Animatable tempCurrent = boardPieces.get("currentPiece");
+            Piece tempCurrent = boardPieces.get("currentPiece");
             placeNextPiece(savedPiece, true);
             savedPiece = tempCurrent;
         }
 
-    }
-
-    //REQUIRES: board initialized
-    //EFFECTS: returns colour located at input x, y
-    public String getColourByPos(int x, int y) {
-        return colourKey[gameBoard[y][x]];
     }
 
 }

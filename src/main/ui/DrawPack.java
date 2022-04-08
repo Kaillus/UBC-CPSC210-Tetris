@@ -6,8 +6,6 @@ Contains full code used for drawing states that was repetitively called in each 
 
 package ui;
 
-import logic.State;
-
 import javax.swing.*;
 
 import java.awt.event.KeyListener;

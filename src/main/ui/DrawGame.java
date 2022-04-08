@@ -8,9 +8,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import logic.Game;
+
 import static logic.Constants.UIFrame;
 
 public class DrawGame extends DrawPack implements DrawState {
+
+    private Game game;
 
     @Override
     public void background() {
@@ -35,7 +39,7 @@ public class DrawGame extends DrawPack implements DrawState {
 
     @Override
     public void update() {
-        //TODO
+        game.gameBoard.updatePiece(game.gameBoard.getCurrentPiece());
     }
 
     @Override
@@ -47,6 +51,8 @@ public class DrawGame extends DrawPack implements DrawState {
     @Override
     public void init() {
         draw();
+        Game game = new Game();
+        game.init();
         //keyListening();
     }
 

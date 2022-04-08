@@ -22,27 +22,36 @@ public class State extends DrawPack {
         MENU, GAME, PAUSE, GAME_OVER, debug
     }
 
-    private static States currentState;
+    private States currentState;
 
-    private static States previousState;
+    private States previousState;
+
+    private static final State INSTANCE = new State();
+
+    private State() {
+    }
+
+    public static State getInstance() {
+        return INSTANCE;
+    }
 
     //REQUIRES: currentState initialized
     //EFFECTS: returns currentState
-    public static States getState() {
+    public States getState() {
         //System.out.println("State is currently: " + currentState);
         return currentState;
     }
 
     //MODIFIES: this
     //EFFECTS: sets currentState to input state
-    public static void setState(States newState) {
+    public void setState(States newState) {
         currentState = newState;
         System.out.println("State is now: " + currentState);
     }
 
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
-    public static void switchState(States switchToState) {
+    public void switchState(States switchToState) {
         previousState = currentState;
         setState(switchToState);
         switch (currentState) {
@@ -68,18 +77,18 @@ public class State extends DrawPack {
         }
     }
 
-    private static void stateDrawMenu() {
+    private void stateDrawMenu() {
         DrawState drawMenu = new DrawMenu();
         drawMenu.init();
     }
 
-    private static void stateDrawGame() {
+    private void stateDrawGame() {
         //shutdown();
         DrawState drawGame = new DrawGame();
         drawGame.init();
     }
 
-    private static void throwDebugFail() {
+    private void throwDebugFail() {
         try {
             throw new UnknownStateException();
         } catch (UnknownStateException e) {
