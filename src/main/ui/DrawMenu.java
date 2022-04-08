@@ -1,8 +1,12 @@
 package ui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static logic.Constants.UIFrame;
 
@@ -10,17 +14,23 @@ public class DrawMenu extends DrawPack implements DrawState {
 
     @Override
     public void background() {
-        JPanel panel = new JPanel();
-        String iconPath = "src/main/assets/menu.png";
-        ImageIcon icon = new ImageIcon(iconPath);
-        JLabel iconLabel = new JLabel(icon);
-        UIFrame.getContentPane().add(new JScrollPane(iconLabel));
-        Dimension size = new Dimension(512,430);
-        iconLabel.setPreferredSize(size);
-        //iconLabel.setLocation(250,100);
-        iconLabel.setOpaque(false);
-        panel.add(iconLabel);
-        UIFrame.getContentPane().add(panel);
+        try {
+            BufferedImage bg = ImageIO.read(new File("src/main/assets/menu.png"));
+            JPanel panel = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    g.drawImage(bg, 0, 0, null);
+                }
+            };
+            panel.setOpaque(false);
+            Dimension size = new Dimension(512,430);
+            panel.setPreferredSize(size);
+            UIFrame.getContentPane().add(panel);
+        } catch (IOException e) {
+            System.out.println("Image retrieval failed");
+            System.exit(1);
+        }
     }
 
     @Override
