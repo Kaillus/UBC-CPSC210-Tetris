@@ -1,8 +1,8 @@
-package model.pieces;
+package ui.model.pieces;
 
-import model.paint.Square;
 import ui.logic.Board;
 import ui.Constants;
+import ui.model.paint.Square;
 
 import java.awt.*;
 

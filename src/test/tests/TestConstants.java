@@ -1,6 +1,6 @@
 package tests;
 
-import logic.TetrisProperties;
+import model.TetrisProperties;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,7 @@ import ui.Constants;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,11 +42,15 @@ public class TestConstants {
 
     @Test
     public void testExistingInit() {
-        File testFile = new File(testPath);
-        TetrisProperties.writeToProperties(3,testPath);
-        testConstants.initConstants(testPath);
-        assertTrue(testFile.isFile());
-        assertEquals(3, testConstants.getGameSpeed());
+        try {
+            File testFile = new File(testPath);
+            TetrisProperties.writeToProperties(3, testPath);
+            testConstants.initConstants(testPath);
+            assertTrue(testFile.isFile());
+            assertEquals(3, testConstants.getGameSpeed());
+        } catch (IOException e) {
+            fail("IOException: in TestConstants, properties were not read from correctly");
+        }
     }
 
     @Test

@@ -1,15 +1,5 @@
 package tests;
 
-import model.pieces.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import ui.Constants;
-import ui.logic.Board;
-
-import java.awt.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestPieces {

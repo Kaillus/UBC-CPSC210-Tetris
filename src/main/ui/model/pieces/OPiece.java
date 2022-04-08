@@ -1,4 +1,4 @@
-package model.pieces;
+package ui.model.pieces;
 
 import ui.logic.Board;
 import ui.Constants;

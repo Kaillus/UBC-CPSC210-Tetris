@@ -1,9 +1,9 @@
-package model.pieces;
+package ui.model.pieces;
 
-import model.Animatable;
-import model.paint.Square;
 import ui.logic.Board;
 import ui.Constants;
+import ui.model.Animatable;
+import ui.model.paint.Square;
 
 import java.awt.*;
 
@@ -126,9 +126,11 @@ public abstract class Piece implements Animatable {
             thr.setLocation(thr.getX(), newy3);
             fou.setLocation(fou.getX(), newy4);
             return true;
-        } else {
-            return false;
         }
+
+        board.placePiece(this);
+
+        return false;
     }
 
 }

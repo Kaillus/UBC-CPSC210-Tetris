@@ -1,4 +1,4 @@
-package ui.model;
+package ui.model.pieces;
 
 public class SmartRectangle extends java.awt.geom.Rectangle2D.Double {
     private java.awt.Color borderColour;

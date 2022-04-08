@@ -8,8 +8,8 @@ Debug: currentState
 
 package ui.logic;
 
-import logic.Game;
-import logic.java.UnknownStateException;
+import model.Game;
+import model.java.UnknownStateException;
 import ui.DrawMenu;
 import ui.DrawPack;
 import ui.DrawState;
@@ -52,24 +52,24 @@ public class State extends DrawPack {
     //MODIFIES: this
     //EFFECTS: changes currentState to input state and initializes associated game mode and methods
     public void switchState(States switchToState) {
-        previousState = currentState;
         setState(switchToState);
-        switch (currentState) {
-            case MENU:
-                stateDrawMenu();
-                break;
+        if (currentState != switchToState) {
+            switch (currentState) {
+                case MENU:
+                    stateDrawMenu();
+                    break;
 
-            case GAME:
-                stateDrawGame();
-                break;
+                case GAME:
+                    stateDrawGame();
+                    break;
 
-            case GAME_OVER:
-                //call UI to draw GAME_OVER
-                break;
+                case GAME_OVER:
+                    //call UI to draw GAME_OVER
+                    break;
 
-            default:
-                throwDebugFail();
-
+                default:
+                    throwDebugFail();
+            }
         }
     }
 

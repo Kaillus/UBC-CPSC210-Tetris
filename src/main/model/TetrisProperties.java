@@ -8,9 +8,7 @@ File handling code itself not written by me, only adapted to fit my project setu
 
 */
 
-package logic;
-
-import logic.java.PropertiesMissingException;
+package model;
 
 import java.io.*;
 import java.util.Properties;
@@ -21,7 +19,7 @@ public class TetrisProperties {
     //MODIFIES: Constants
     //EFFECTS: writes input integer to properties file located at path p. if file doesn't exist, it is created
     //         if file creation fails, throws IOException
-    public static void writeToProperties(int i, String p) {
+    public static void writeToProperties(int i, String p) throws IOException {
 
         try (OutputStream output = new FileOutputStream(p)) {
 
@@ -44,12 +42,12 @@ public class TetrisProperties {
 
     //EFFECTS: reads stored values in properties file located at path p. if properties file at p does not exist,
     //         throws PropertiesMissingException; if file reading is interrupted, throws IOException
-    public static int readFromProperties(String p) {
+    public static int readFromProperties(String p) throws IOException {
 
         File properties = new File(p);
         if (!properties.isFile()) {
             System.out.println("File missing: couldn't read file at " + p);
-            throw new PropertiesMissingException();
+            throw new IOException();
         }
 
         try (InputStream input = new FileInputStream(p)) {

@@ -1,10 +1,12 @@
 package tests;
 
-import model.Animatable;
+import org.junit.jupiter.api.BeforeEach;
+import ui.Constants;
+import ui.model.*;
 import ui.logic.Board;
-import logic.RandNext;
-import model.pieces.*;
+import model.RandNext;
 import org.junit.jupiter.api.Test;
+import ui.model.pieces.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,9 +14,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestRandNext {
 
-    private Board board = new Board(6,6);
+    private Board board;
     private Piece testObject;
-    private RandNext randNext = new RandNext(board);
+    private RandNext randNext;
+
+    @BeforeEach
+    public void setup() {
+        board = new Board(6,6);
+        randNext = new RandNext(board);
+    }
 
     @Test
     public void testSelect() {
@@ -35,7 +43,7 @@ public class TestRandNext {
     }
 
     @Test
-    public void testInitNext() {
+    public void testVerifyBagSize() {
         assertEquals(4, randNext.getSize());
     }
 
