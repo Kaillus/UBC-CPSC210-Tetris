@@ -16,7 +16,7 @@ public class Square {
     //    System.out.println("This square's dimensions are " + square.dimensions + "x" + square.dimensions);
     //}
 
-    public void squareColour(Square square){
-        System.out.println("This square's colour is " + square.colour);
-    }
+    //public void squareColour(Square square){
+    //    System.out.println("This square's colour is " + square.colour);
+    //}
 }
