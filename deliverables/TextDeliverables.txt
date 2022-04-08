@@ -60,3 +60,9 @@ reverted to the previous state. Finally was added which prints the final state a
     - Cohesion assessment: State
 - COUPLING: Lots of semantic coupling around the pieces classes (although they must be the same)
     - Coupling assessment: Game, Board, RandNext
+
+03/08/19 - Deliverable 10 and 11
+
+- Fetched and parsed json weather api, implemented as window heading
+- Observer implemented with KeyListener in KeyInput
+- GUI = Tetris

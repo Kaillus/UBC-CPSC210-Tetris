@@ -6,7 +6,7 @@ Contains full code used for drawing states that was repetitively called in each 
 
 package ui;
 
-import logic.KeyInputUI;
+import logic.State;
 
 import javax.swing.*;
 
@@ -19,7 +19,7 @@ public abstract class DrawPack {
     public abstract void background();
 
     void pack() {
-        KeyListener keyListener = new KeyInputUI();
+        KeyListener keyListener = new KeyInput();
         UIFrame.addKeyListener(keyListener);
 
         UIFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -27,13 +27,14 @@ public abstract class DrawPack {
         UIFrame.setFocusable(true);
         UIFrame.pack();
         UIFrame.setLocationRelativeTo(null);
+        UIFrame.revalidate();
+        UIFrame.repaint();
         UIFrame.setVisible(true);
     }
 
     protected static void shutdown() {
         UIFrame.removeAll();
-        UIFrame.repaint();
-        UIFrame.revalidate();
+        UIFrame.invalidate();
     }
 
 }

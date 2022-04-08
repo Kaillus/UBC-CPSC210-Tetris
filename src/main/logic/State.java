@@ -70,13 +70,13 @@ public class State extends DrawPack {
 
     private static void stateDrawMenu() {
         DrawState drawMenu = new DrawMenu();
-        drawMenu.draw();
+        drawMenu.init();
     }
 
     private static void stateDrawGame() {
-        shutdown();
+        //shutdown();
         DrawState drawGame = new DrawGame();
-        drawGame.draw();
+        drawGame.init();
     }
 
     private static void throwDebugFail() {

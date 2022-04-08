@@ -4,9 +4,10 @@ Handles actions that occur based on user key input
 
  */
 
-package logic;
+package ui;
 
 import com.sun.org.apache.bcel.internal.classfile.Unknown;
+import logic.State;
 import logic.java.UnknownStateException;
 import ui.DrawOptions;
 
@@ -18,7 +19,7 @@ import static logic.State.States.GAME;
 //import static logic.State.States.PAUSE;
 //import static logic.State.States.MENU;
 
-public class KeyInputUI extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
+public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
 
     //EFFECTS: closes window and kills process
     @Override

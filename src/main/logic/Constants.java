@@ -6,12 +6,14 @@ Supposed to handle global constants but there's only one I need to be global rig
 
 package logic;
 
+import ui.ReadWebPageEx;
+
 import javax.swing.*;
 import java.io.File;
 
 public class Constants {
 
-    public static JFrame UIFrame = new JFrame("Not Tetris");
+    public static JFrame UIFrame = new JFrame(ReadWebPageEx.fetchString());
 
     public static int gameSpeed;
 
