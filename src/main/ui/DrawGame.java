@@ -9,7 +9,7 @@ public class DrawGame extends DrawPack implements DrawState {
     @Override
     public void background() {
         JPanel panel = new JPanel();
-        String iconPath = "src/image/TetrisLogo.png";
+        String iconPath = "src/main/image/TetrisLogo.png";
         ImageIcon icon = new ImageIcon(iconPath);
         JLabel iconLabel = new JLabel(icon);
         TetrisFrame.getContentPane().add(new JScrollPane(iconLabel));

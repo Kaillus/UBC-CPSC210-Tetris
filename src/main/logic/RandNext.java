@@ -12,7 +12,8 @@ import java.util.Collections;
 
 public class RandNext {
 
-    private static ArrayList<String> baseBag = new ArrayList<String>();
+    private static ArrayList<String> baseBag = new ArrayList<>();
+
     static {
         baseBag.add("L");
         baseBag.add("J");
@@ -51,7 +52,7 @@ public class RandNext {
     //REQUIRES: initNext not being previously run in current game instance
     //EFFECTS: initializes next four pieces for use in game
     public ArrayList<String> initNext() {
-        ArrayList<String> currentBag = new ArrayList<String>();
+        ArrayList<String> currentBag = new ArrayList<>();
         currentBag.add(getRandom());
         currentBag.add(getRandom());
         currentBag.add(getRandom());

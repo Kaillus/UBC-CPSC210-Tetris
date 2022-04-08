@@ -9,7 +9,7 @@ public class DrawMenu extends DrawPack implements DrawState {
     @Override
     public void background() {
         JPanel panel = new JPanel();
-        String iconPath = "src/image/menu.png";
+        String iconPath = "src/main/image/menu.png";
         ImageIcon icon = new ImageIcon(iconPath);
         JLabel iconLabel = new JLabel(icon);
         TetrisFrame.getContentPane().add(new JScrollPane(iconLabel));
