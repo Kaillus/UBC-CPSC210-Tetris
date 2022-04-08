@@ -62,12 +62,15 @@ public class Board {
         return colourKey[gameBoard[y][x]];
     }
 
+    //MODIFIES: this
+    //EFFECTS: checks to see if the given coordinates are in the list of current coordinates or are empty spaces
+    //         current coordinates meaning they're part of the current block, and so if the piece moves that way
+    //         it won't be moving into a conflicting spot
     private boolean isFree(ArrayList<ArrayList<Integer>> coords, int x, int y) {
         ArrayList<Integer> tempCoords = new ArrayList<>();
         tempCoords.add(x);
         tempCoords.add(y);
         for (ArrayList<Integer> i : coords) {
-            //if (!(getColourByPos(x, y).equals("black")) || (!coords.contains([x,y])));
             if (!((i == tempCoords) || (getColourByPos(x, y).equals("black")))) {
                 return false;
             }
@@ -75,10 +78,13 @@ public class Board {
         return true;
     }
 
+    //EFFECTS: checks to see if the given coordinates are within the bounds of the board
     private boolean isValid(int x, int y) {
         return (x < boardWidth && y < boardHeight);
     }
 
+    //EFFECTS: checks to see if all the given coordinates can be moved to a new set of coordinates.
+    //         in coords, x is index 0 and y is index 1 where newX and newY are the delta value (of movement) ie. dx, dy
     private boolean loopCheck(ArrayList<ArrayList<Integer>> coords, int newX, int newY) {
         boolean check = false;
         for (ArrayList<Integer> i : coords) {
@@ -89,36 +95,37 @@ public class Board {
         return check;
     }
 
-    private boolean canMoveDown(ArrayList<ArrayList<Integer>> curCoords) {
-        return loopCheck(curCoords,0,1);
-    }
-
-    private boolean canMoveLeft(ArrayList<ArrayList<Integer>> curCoords) {
-        return loopCheck(curCoords,-1,0);
-    }
-
-    private boolean canMoveRight(ArrayList<ArrayList<Integer>> curCoords) {
-        return loopCheck(curCoords,1,0);
-    }
-
-    //MR. TA: TRUST ME IT WORKS
+    //EFFECTS: checks to see if a piece can move in the input direction and returns a boolean based on testing.
+    //         the input values to loopCheck are in terms of dx and dy - if newX is 1, loopCheck checks to see if
+    //         movement to the current x values + 1 are possible and same for newY
     private boolean canMove(Piece piece, int dir) {
         ArrayList<ArrayList<Integer>> curCoords = piece.getPos();
         boolean movable = false;
         switch (dir) {
             case 1: //DOWN
-                movable = canMoveDown(curCoords);
+                movable = loopCheck(curCoords,0,1);
                 break;
             case 2: //LEFT
-                movable = canMoveLeft(curCoords);
+                movable = loopCheck(curCoords,-1,0);
                 break;
             case 3: //RIGHT
-                movable = canMoveRight(curCoords);
+                movable = loopCheck(curCoords,1,0);
                 break;
             default:
                 break;
         }
         return movable;
+    }
+
+    //MODIFIES: this
+    //EFFECTS: if possible, moves the entire piece down one row on the board. if not, generate the next piece (because
+    //         if the piece is unable to move, that means it must be in its final state)
+    public void updatePiece(Piece piece) {
+        if (canMove(piece, 1)) {
+            piece.moveDown();
+        } else {
+            nextPiece();
+        }
     }
 
     //MODIFIES: this
@@ -160,14 +167,6 @@ public class Board {
             nextPiece();
         } else {
             boardPieces.replace("currentPiece", piece);
-        }
-    }
-
-    public void updatePiece(Piece piece) {
-        if (canMove(piece, 1)) {
-            piece.moveDown();
-        } else {
-            nextPiece();
         }
     }
 

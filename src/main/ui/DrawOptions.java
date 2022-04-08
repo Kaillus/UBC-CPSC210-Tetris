@@ -1,11 +1,10 @@
 package ui;
 
-import logic.Constants;
 import logic.TetrisProperties;
 
 import javax.swing.*;
 
-import static logic.Constants.UIFrame;
+import static ui.Constants.UIFrame;
 
 public class DrawOptions implements DrawState {
 

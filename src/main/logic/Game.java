@@ -52,9 +52,11 @@ public class Game {
     */
 
     public Board gameBoard;
+    private int boardHeight = 20;
+    private int boardWidth = 10;
 
     public void init() {
-        gameBoard = new Board(20, 10);
+        gameBoard = new Board(boardHeight, boardWidth);
     }
 
     public void saveBlock() {

@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import java.awt.event.KeyListener;
 
-import static logic.Constants.UIFrame;
+import static ui.Constants.UIFrame;
 
 public abstract class DrawPack {
 

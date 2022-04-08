@@ -6,11 +6,6 @@ import model.Square;
 
 public class ZPiece extends Piece {
 
-    private Square one;
-    private Square two;
-    private Square thr;
-    private Square fou;
-
     @Override
     public void draw(Board board, int x, int y) {
         Square one = new Square("red", x - 1, y);

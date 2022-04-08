@@ -6,14 +6,12 @@ Handles actions that occur based on user key input
 
 package ui;
 
-import logic.State;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import static logic.State.States.MENU;
-import static logic.State.States.GAME;
-//import static logic.State.States.PAUSE;
-//import static logic.State.States.MENU;
+import static ui.State.States.GAME;
+//import static ui.State.States.PAUSE;
+//import static ui.State.States.MENU;
 
 public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
 
