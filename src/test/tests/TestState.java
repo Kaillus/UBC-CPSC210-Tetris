@@ -37,11 +37,11 @@ public class TestState {
         state.setState(MENU);
         assertEquals(state.getState(), MENU);
 
-        try{
-            //state.setState("TETRIS");
-        } catch (UnknownStateException e) {
-            fail("Failed to handle UnknownStateException");
-        }
+//        try{
+//            state.setState(debug);
+//        } catch (UnknownStateException e) {
+//            fail("Failed to handle UnknownStateException");
+//        }
 
         assertEquals(state.getState(), MENU);
 

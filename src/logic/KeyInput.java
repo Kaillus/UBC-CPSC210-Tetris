@@ -18,7 +18,7 @@ import static logic.State.States.GAME;
 //import static logic.State.States.PAUSE;
 //import static logic.State.States.MENU;
 
-public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer  {
+public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.java.Printer {
 
     //EFFECTS: closes window and kills process
     @Override
@@ -58,12 +58,7 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
         int keyCode = e.getKeyCode();
 
         if (keyCode == KeyEvent.VK_ENTER) {
-            try {
-                State.switchState(GAME);
-            } catch (UnknownStateException s) {
-                System.out.println("Game state switch failed");
-                close();
-            }
+            State.switchState(GAME);
         }
 
         if (keyCode == KeyEvent.VK_BACK_SPACE) {
