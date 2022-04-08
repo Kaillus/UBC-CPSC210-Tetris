@@ -8,6 +8,7 @@ package logic;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import ui.DrawState;
 
 import static logic.State.States.MENU;
 import static logic.State.States.GAME;
@@ -36,6 +37,12 @@ public class KeyInput extends KeyAdapter {
         if (keyCode == KeyEvent.VK_ESCAPE) {
             System.out.println("Exiting process via emergency escape, currentState was: " + temp.getState());
             System.exit(0);
+        }
+
+        if (keyCode == KeyEvent.VK_BACK_SPACE) {
+            if (temp.getState() == MENU) {
+                ui.DrawState.drawOptions();
+            }
         }
 
     }
