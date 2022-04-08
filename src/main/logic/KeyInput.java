@@ -42,13 +42,24 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
 
         int keyCode = e.getKeyCode();
 
-        if (State.getState() == MENU) {
-            keyPressedInMenu(e);
-        }
-
         if (keyCode == KeyEvent.VK_ESCAPE) {
             print("Exiting process via emergency escape, currentState was: " + State.getState());
             close();
+        }
+
+        switch (State.getState()) {
+
+            case MENU:
+                keyPressedInMenu(e);
+                break;
+
+            case GAME:
+                keyPressedInGame(e);
+                break;
+
+            default:
+                break;
+
         }
 
     }
@@ -67,5 +78,17 @@ public class KeyInput extends KeyAdapter implements java.io.Closeable, logic.jav
         }
 
     }
+
+    private void keyPressedInGame(KeyEvent e) {
+
+        int keyCode = e.getKeyCode();
+
+        if (keyCode == KeyEvent.VK_SHIFT) {
+            //Game.saveBlock();
+        }
+
+
+    }
+
 
 }
